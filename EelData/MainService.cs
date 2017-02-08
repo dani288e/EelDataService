@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
-using System.Linq;
-using System.ServiceProcess;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ServiceProcess;
+using System.Timers;
 
 namespace EelData
 {
     public partial class MainService : ServiceBase
     {
+        private Timer _dataLoggerTimer = null;
+
         public MainService()
         {
             InitializeComponent();
@@ -19,10 +14,17 @@ namespace EelData
 
         protected override void OnStart(string[] args)
         {
-            // test commentasdsadasds
+            _dataLoggerTimer = new Timer();
+            _dataLoggerTimer.Interval = 150000;
+            _dataLoggerTimer.Elapsed += _dataLoggerTimer_Elapsed;
         }
 
         protected override void OnStop()
+        {
+
+        }
+
+        private void _dataLoggerTimer_Elapsed(object sender, ElapsedEventArgs e)
         {
 
         }
