@@ -1,0 +1,1 @@
+C:\Users\danie\OneDrive\dev\c#\EelData\EelData.SocketServer\obj\Debug\EelData.SocketServer.csprojResolveAssemblyReference.cache

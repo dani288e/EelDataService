@@ -6,3 +6,5 @@ C:\Users\danie\OneDrive\dev\c#\EelData\EelData\bin\Debug\EelData.exe
 C:\Users\danie\OneDrive\dev\c#\EelData\EelData\bin\Debug\EelData.pdb
 C:\Users\danie\OneDrive\dev\c#\EelData\EelData\obj\Debug\EelData.exe
 C:\Users\danie\OneDrive\dev\c#\EelData\EelData\obj\Debug\EelData.pdb
+C:\Users\danie\OneDrive\dev\c#\EelData\EelData\bin\Debug\EelData.Networking.dll
+C:\Users\danie\OneDrive\dev\c#\EelData\EelData\bin\Debug\EelData.Networking.pdb

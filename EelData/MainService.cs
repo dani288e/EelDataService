@@ -1,5 +1,6 @@
 ﻿using System.ServiceProcess;
 using System.Timers;
+using EelData.Networking;
 
 namespace EelData
 {
@@ -16,7 +17,7 @@ namespace EelData
         {
             _dataLoggerTimer = new Timer();
             _dataLoggerTimer.Interval = 150000;
-            _dataLoggerTimer.Elapsed += _dataLoggerTimer_Elapsed;
+            _dataLoggerTimer.Elapsed += DataLoggerTimer_Elapsed;
         }
 
         protected override void OnStop()
@@ -24,9 +25,9 @@ namespace EelData
 
         }
 
-        private void _dataLoggerTimer_Elapsed(object sender, ElapsedEventArgs e)
+        private void DataLoggerTimer_Elapsed(object sender, ElapsedEventArgs e)
         {
-
+            SocketServerSingleton.Instance.TestMethod();
         }
     }
 }
