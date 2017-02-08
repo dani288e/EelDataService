@@ -19,7 +19,7 @@ namespace EelData
 
         protected override void OnStart(string[] args)
         {
-
+            // test comment
         }
 
         protected override void OnStop()
