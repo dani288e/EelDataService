@@ -2,13 +2,19 @@
 {
     public class SocketServerSingleton
     {
-        private static readonly System.Lazy<EelSocketServer> lazy;
+        private static readonly System.Lazy<SocketServer> lazy;
 
         static SocketServerSingleton()
         {
-            lazy = new System.Lazy<EelSocketServer>(() => new EelSocketServer());
+            lazy = new System.Lazy<SocketServer>(() => new SocketServer());
         }
 
-        public static EelSocketServer Instance { get { return lazy.Value; } }
+        public static SocketServer Instance
+        {
+            get
+            {
+                return lazy.Value;
+            }
+        }
     }
 }

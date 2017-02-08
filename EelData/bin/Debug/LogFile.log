@@ -1,0 +1,17 @@
+[08-02-2017 16:01:23] Setting up server...
+[08-02-2017 16:01:23] Server setup complete
+[08-02-2017 16:01:23] Service started
+[08-02-2017 16:04:40] Client connected: 127.0.0.1:57933
+[08-02-2017 16:04:44] Text received: 1
+[08-02-2017 16:04:44] Sending feed command to client...
+[08-02-2017 16:04:44] Feed command sent to client
+[08-02-2017 16:04:45] Text received: 1
+[08-02-2017 16:05:06] Client forcefully disconnected
+[08-02-2017 17:05:20] Client connected: 127.0.0.1:58563
+[08-02-2017 17:05:23] Text received: 1
+[08-02-2017 17:05:28] Client forcefully disconnected
+[08-02-2017 17:05:40] Client connected: 127.0.0.1:58565
+[08-02-2017 17:05:45] Text received: test
+[08-02-2017 17:05:45] Text is an invalid request
+[08-02-2017 17:05:45] Warning Sent
+[08-02-2017 17:05:49] Client forcefully disconnected

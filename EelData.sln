@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EelData", "EelData\EelData.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EelData.Networking", "EelData.Networking\EelData.Networking.csproj", "{A31822C4-B8EC-47C3-A067-021A3AD0D6B1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EelData.Logger", "EelData.Logger\EelData.Logger.csproj", "{02C2CE00-4C73-4A6A-8A6D-6624FCFF0BF0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{A31822C4-B8EC-47C3-A067-021A3AD0D6B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A31822C4-B8EC-47C3-A067-021A3AD0D6B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A31822C4-B8EC-47C3-A067-021A3AD0D6B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02C2CE00-4C73-4A6A-8A6D-6624FCFF0BF0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02C2CE00-4C73-4A6A-8A6D-6624FCFF0BF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02C2CE00-4C73-4A6A-8A6D-6624FCFF0BF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02C2CE00-4C73-4A6A-8A6D-6624FCFF0BF0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
