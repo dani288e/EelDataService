@@ -35,7 +35,6 @@ namespace EelData
 
         private void DataLoggerTimer_Elapsed(object sender, ElapsedEventArgs e)
         {
-            SocketServerSingleton.Instance.TestMethod();
         }
     }
 }

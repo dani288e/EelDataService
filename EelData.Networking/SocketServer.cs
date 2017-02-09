@@ -37,11 +37,6 @@ namespace EelData.Networking
             }
         }
 
-        public void TestMethod()
-        {
-            LoggerSingleton.Instance.WriteToLog("Test method fired");
-        }
-
         private void AcceptCallback(IAsyncResult AR)
         {
             Socket socket;
@@ -60,6 +55,17 @@ namespace EelData.Networking
             socket.BeginReceive(_buffer, 0, _bufferSize, SocketFlags.None, ReceiveCallback, socket);
             LoggerSingleton.Instance.WriteToLog("Client connected: " + socket.RemoteEndPoint.ToString());
             _serverSocket.BeginAccept(AcceptCallback, null /* insert state stuff here */);
+        }
+
+        /// <summary>
+        /// Desktop application wants to connect to the service
+        /// </summary>
+        /// <param name="AR"></param>
+        /// <param name="IP">IPAdress object, use this to send a command to a specific device</param>
+        public void ReceiveCallback(IAsyncResult AR, IPAddress IP)
+        {
+            Socket clientSocket = _clientSockets.Find(x => x.RemoteEndPoint.ToString() == IP.ToString());
+
         }
 
         private void ReceiveCallback(IAsyncResult AR)
@@ -84,13 +90,13 @@ namespace EelData.Networking
             string text = Encoding.ASCII.GetString(receivedBuffer);
             LoggerSingleton.Instance.WriteToLog("Text received: " + text);
 
-            if (text.ToLower() == "feed" || _shouldFeed == true)
+            if (text.ToLower().Contains("feed"))
             {
-                LoggerSingleton.Instance.WriteToLog("Sending feed command to client...");
+                //Socket clientSocket = _clientSockets.Find(x => x.RemoteEndPoint.ToString() == ip.ToString());
+                Console.WriteLine("Sending feed command to client...");
                 byte[] data = Encoding.ASCII.GetBytes("1$");
                 current.Send(data);
-                LoggerSingleton.Instance.WriteToLog("Feed command sent to client");
-                _shouldFeed = false;
+                Console.WriteLine("Feed command sent to client");
             }
             else if (text.ToLower().StartsWith("warning"))
             {

@@ -14,6 +14,7 @@ namespace EelData.Logger
         }
 
 
+
         /// <summary>
         /// Error logger - for exceptions - Logger.WriteErrorLog(whatever);
         /// </summary>

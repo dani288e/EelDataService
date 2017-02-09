@@ -15,3 +15,39 @@
 [08-02-2017 17:05:45] Text is an invalid request
 [08-02-2017 17:05:45] Warning Sent
 [08-02-2017 17:05:49] Client forcefully disconnected
+[09-02-2017 15:43:03] Setting up server...
+[09-02-2017 15:43:03] Server setup complete
+[09-02-2017 15:43:03] Service started
+[09-02-2017 15:43:04] Client connected: 127.0.0.1:50410
+[09-02-2017 15:46:33] Text received: $1
+[09-02-2017 15:46:33] Sending feed command to client...
+[09-02-2017 15:46:33] Feed command sent to client
+[09-02-2017 15:48:45] Text received: $1
+[09-02-2017 15:48:45] Text is an invalid request
+[09-02-2017 15:48:45] Warning Sent
+[09-02-2017 15:48:52] Text received: $1
+[09-02-2017 15:48:52] Text is an invalid request
+[09-02-2017 15:48:52] Warning Sent
+[09-02-2017 15:49:01] Text received: $1
+[09-02-2017 15:49:01] Text is an invalid request
+[09-02-2017 15:49:01] Warning Sent
+[09-02-2017 15:51:31] Service stopped
+[09-02-2017 15:51:48] Setting up server...
+[09-02-2017 15:51:48] Server setup complete
+[09-02-2017 15:51:48] Service started
+[09-02-2017 15:52:07] Client connected: 127.0.0.1:50617
+[09-02-2017 15:52:11] Text received: $1
+[09-02-2017 15:52:11] Text is an invalid request
+[09-02-2017 15:52:11] Warning Sent
+[09-02-2017 15:52:25] Text received: feed
+[09-02-2017 15:52:25] Text is an invalid request
+[09-02-2017 15:52:25] Warning Sent
+[09-02-2017 15:53:34] Client forcefully disconnected
+[09-02-2017 15:53:38] Service stopped
+[09-02-2017 15:53:46] Setting up server...
+[09-02-2017 15:53:46] Server setup complete
+[09-02-2017 15:53:46] Service started
+[09-02-2017 15:53:53] Client connected: 127.0.0.1:50625
+[09-02-2017 15:53:55] Text received: feed
+[09-02-2017 15:54:06] Text received: feed
+[09-02-2017 15:54:09] Client forcefully disconnected
