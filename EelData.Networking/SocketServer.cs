@@ -4,38 +4,80 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using EelData.Logger;
+using EelData.Model;
 
 namespace EelData.Networking
 {
     public class SocketServer
     {
         #region fields
-        private readonly Socket _serverSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-        private List<Socket> _clientSockets = new List<Socket>();
+        private readonly Socket _serverSocket;
+        private List<Socket> _clientSockets;
+        private readonly byte[] _buffer = new byte[_bufferSize];
         private const int _bufferSize = 2048;
         private const int _port = 1337;
-        private readonly byte[] _buffer = new byte[_bufferSize];
+        #endregion
+
+        #region constructor
+        private SocketServer()
+        {
+            try
+            {
+                _serverSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+                _clientSockets = new List<Socket>();
+            }
+            catch (SocketException ex)
+            {
+                LoggerSingleton.Instance.Log("Socket exception occurred when initializing serversocket and clientsockets", ex);
+                throw;
+            }
+        }
         #endregion
 
         public void SetupServer()
         {
-            LoggerSingleton.Instance.Log("Setting up server...");
-            _serverSocket.Bind(new IPEndPoint(IPAddress.Any, _port));
-            // place the socket in a listen state. Max queue of 5 connections at a time
-            _serverSocket.Listen(5);
-            _serverSocket.BeginAccept(AcceptCallback, null /* insert object state here */);
-            LoggerSingleton.Instance.Log("Socket server started");
+            try
+            {
+                LoggerSingleton.Instance.Log("Setting up server...");
+                _serverSocket.Bind(new IPEndPoint(IPAddress.Any, _port));
+                // place the socket in a listen state. Max queue of 5 connections at a time
+                _serverSocket.Listen(5);
+                _serverSocket.BeginAccept(AcceptCallback, null /* insert object state here */);
+                LoggerSingleton.Instance.Log("Socket server started");
+            }
+            catch (Exception ex)
+            {
+                LoggerSingleton.Instance.Log("The following error occurred on setupserver", ex);
+                throw;
+            }
         }
 
         public void CloseAllSockets()
         {
             foreach (Socket socket in _clientSockets)
             {
-                socket.Shutdown(SocketShutdown.Both);
-                socket.Close();
+                try
+                {
+                    socket.Shutdown(SocketShutdown.Both);
+                    socket.Close();
+                }
+                catch (SocketException ex)
+                {
+                    LoggerSingleton.Instance.Log("A socketexception occurred when attempting to shutdown sockets", ex);
+                    throw;
+                }
+                catch (ObjectDisposedException ex)
+                {
+                    LoggerSingleton.Instance.Log("An objectdisposedexception occurred when attempting to shutdown sockets", ex);
+                    throw;
+                }
             }
         }
 
+        /// <summary>
+        /// Accepts connections from clients
+        /// </summary>
+        /// <param name="AR"></param>
         private void AcceptCallback(IAsyncResult AR)
         {
             Socket socket;
@@ -88,16 +130,20 @@ namespace EelData.Networking
                     {
                         // invalid command
                         // notify the connected user that the IP address entered wasn't found
-                    } 
+                    }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                // the device was not found in the list
+                LoggerSingleton.Instance.Log("An exception occurred when handling a request in receivecallback", ex);
             }
 
         }
 
+        /// <summary>
+        /// Handle requests from connected devices
+        /// </summary>
+        /// <param name="AR"></param>
         private void ReceiveCallback(IAsyncResult AR)
         {
             Socket current = (Socket)AR.AsyncState;
@@ -107,8 +153,9 @@ namespace EelData.Networking
             {
                 received = current.EndReceive(AR);
             }
-            catch (SocketException)
+            catch (Exception)
             {
+                // client disconnects by either losing the connection or closing it improperly
                 LoggerSingleton.Instance.Log("Client forcefully disconnected");
                 current.Close();
                 _clientSockets.Remove(current);
@@ -154,6 +201,10 @@ namespace EelData.Networking
             current.BeginReceive(_buffer, 0, _bufferSize, SocketFlags.None, ReceiveCallback, current);
         }
 
+        /// <summary>
+        /// Handle connections when clients disconnect properly
+        /// </summary>
+        /// <param name="AR"></param>
         private void SendCallback(IAsyncResult AR)
         {
             Socket socket = (Socket)AR.AsyncState;
