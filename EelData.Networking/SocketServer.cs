@@ -16,16 +16,29 @@ namespace EelData.Networking
         private const int _port = 1337;
         private readonly byte[] _buffer = new byte[_bufferSize];
         private bool _shouldFeed = true;
+        AbstractLogger _loggerChain = GetChainOfLoggers();
         #endregion
+
+        private static AbstractLogger GetChainOfLoggers()
+        {
+            AbstractLogger debugLogger = new ErrorLogger(AbstractLogger.Info);
+            AbstractLogger errorLogger = new ErrorLogger(AbstractLogger.Error);
+            AbstractLogger fileLogger = new ErrorLogger(AbstractLogger.Debug);
+
+            errorLogger.SetNextLogger(fileLogger);
+            fileLogger.SetNextLogger(debugLogger);
+
+            return errorLogger;
+        }
 
         public void SetupServer()
         {
-            LoggerSingleton.Instance.WriteToLog("Setting up server...");
+            //LoggerSingleton.Instance.WriteToLog("Setting up server...");
             _serverSocket.Bind(new IPEndPoint(IPAddress.Any, _port));
             // place the socket in a listen state. This means max queue of 5 connections at a time
             _serverSocket.Listen(5);
             _serverSocket.BeginAccept(AcceptCallback, null /* insert object state here */);
-            LoggerSingleton.Instance.WriteToLog("Server setup complete");
+            _loggerChain.LogMessage(AbstractLogger.Info, "Socket server started");
         }
 
         public void CloseAllSockets()
@@ -47,7 +60,8 @@ namespace EelData.Networking
             }
             catch (ObjectDisposedException ex)
             {
-                LoggerSingleton.Instance.WriteToLog(ex.ToString());
+                //LoggerSingleton.Instance.WriteToLog(ex.ToString());
+                GetChainOfLoggers.
                 return;
             }
 
@@ -58,12 +72,14 @@ namespace EelData.Networking
         }
 
         /// <summary>
+        /// Unfinished - TODO - finish this
         /// Desktop application wants to connect to the service
         /// </summary>
         /// <param name="AR"></param>
         /// <param name="IP">IPAdress object, use this to send a command to a specific device</param>
         public void ReceiveCallback(IAsyncResult AR, IPAddress IP)
         {
+
             Socket clientSocket = _clientSockets.Find(x => x.RemoteEndPoint.ToString() == IP.ToString());
 
         }
