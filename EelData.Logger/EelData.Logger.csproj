@@ -40,9 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AbstractLogger.cs" />
-    <Compile Include="DebugLogger.cs" />
-    <Compile Include="FileLogger.cs" />
+    <Compile Include="FlatFileObserver.cs" />
+    <Compile Include="ILogObserver.cs" />
+    <Compile Include="Logger.cs" />
+    <Compile Include="LoggerSingleton.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -9,18 +9,7 @@ namespace EelData
     public partial class MainService : ServiceBase
     {
         private Timer _dataLoggerTimer = null;
-        AbstractLogger _loggerChain = GetChainOfLoggers();
 
-        private static AbstractLogger GetChainOfLoggers()
-        {
-            AbstractLogger errorLogger = new FileLogger(AbstractLogger.Error);
-            AbstractLogger fileLogger = new DebugLogger(AbstractLogger.Debug);
-
-            errorLogger.SetNextLogger(fileLogger);
-            fileLogger.SetNextLogger(errorLogger);
-
-            return errorLogger;
-        }
 
         public MainService()
         {
@@ -36,14 +25,14 @@ namespace EelData
 
             _dataLoggerTimer = new Timer() { Interval = 150000 };
             _dataLoggerTimer.Elapsed += DataLoggerTimer_Elapsed;
-            _loggerChain.LogMessage(AbstractLogger.Debug, "Service started");
 
+            LoggerSingleton.Instance.Log("Service started");
         }
 
         protected override void OnStop()
         {
             SocketServerSingleton.Instance.CloseAllSockets();
-            _loggerChain.LogMessage(AbstractLogger.Debug, "Service stopped");
+            LoggerSingleton.Instance.Log("Service stopped");
             _dataLoggerTimer.Enabled = false;
         }
 

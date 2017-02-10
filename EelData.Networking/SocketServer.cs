@@ -1,9 +1,9 @@
-﻿using EelData.Logger;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using EelData.Logger;
 
 namespace EelData.Networking
 {
@@ -15,29 +15,16 @@ namespace EelData.Networking
         private const int _bufferSize = 2048;
         private const int _port = 1337;
         private readonly byte[] _buffer = new byte[_bufferSize];
-        AbstractLogger _loggerChain = GetChainOfLoggers();
         #endregion
-
-        private static AbstractLogger GetChainOfLoggers()
-        {
-            AbstractLogger infoLogger = new FileLogger(AbstractLogger.Info);
-            AbstractLogger errorLogger = new FileLogger(AbstractLogger.Error);
-            AbstractLogger fileLogger = new FileLogger(AbstractLogger.Debug);
-
-            errorLogger.SetNextLogger(fileLogger);
-            fileLogger.SetNextLogger(errorLogger);
-
-            return errorLogger;
-        }
 
         public void SetupServer()
         {
-            //LoggerSingleton.Instance.WriteToLog("Setting up server...");
+            LoggerSingleton.Instance.Log("Setting up server...");
             _serverSocket.Bind(new IPEndPoint(IPAddress.Any, _port));
-            // place the socket in a listen state. This means max queue of 5 connections at a time
+            // place the socket in a listen state. Max queue of 5 connections at a time
             _serverSocket.Listen(5);
             _serverSocket.BeginAccept(AcceptCallback, null /* insert object state here */);
-            _loggerChain.LogMessage(AbstractLogger.Info, "Socket server started");
+            LoggerSingleton.Instance.Log("Socket server started");
         }
 
         public void CloseAllSockets()
@@ -59,13 +46,13 @@ namespace EelData.Networking
             }
             catch (ObjectDisposedException ex)
             {
-                _loggerChain.LogMessage(3, ex.ToString());
+                LoggerSingleton.Instance.Log("An object disposed exception occurred on AcceptingCallback", ex);
                 return;
             }
 
             _clientSockets.Add(socket);
             socket.BeginReceive(_buffer, 0, _bufferSize, SocketFlags.None, ReceiveCallback, socket);
-            _loggerChain.LogMessage(AbstractLogger.Debug, "Client connected: " + socket.RemoteEndPoint.ToString());
+            LoggerSingleton.Instance.Log("Client connected: " + socket.RemoteEndPoint.ToString());
             _serverSocket.BeginAccept(AcceptCallback, null /* insert state stuff here */);
         }
 
@@ -93,7 +80,7 @@ namespace EelData.Networking
             }
             catch (SocketException)
             {
-                _loggerChain.LogMessage(AbstractLogger.Info, "Client forcefully disconnected");
+                LoggerSingleton.Instance.Log("Client forcefully disconnected");
                 current.Close();
                 _clientSockets.Remove(current);
                 return;
@@ -102,7 +89,7 @@ namespace EelData.Networking
             byte[] receivedBuffer = new byte[received];
             Array.Copy(_buffer, receivedBuffer, received);
             string text = Encoding.ASCII.GetString(receivedBuffer);
-            _loggerChain.LogMessage(AbstractLogger.Info, "Text received: " + text);
+            LoggerSingleton.Instance.Log("Text received: " + text);
 
             if (text.ToLower().Contains("feed"))
             {
@@ -114,12 +101,12 @@ namespace EelData.Networking
             }
             else if (text.ToLower().StartsWith("warning"))
             {
-                _loggerChain.LogMessage(AbstractLogger.Info, "Warning received from client!");
+                LoggerSingleton.Instance.Log("Warning received from client");
                 // TODO - add warning handling code here
             }
             else if (text.ToLower().StartsWith("ack"))
             {
-                _loggerChain.LogMessage(AbstractLogger.Info, "Client sent feed acknowledgement, the eel have been fed");
+                LoggerSingleton.Instance.Log("Client send feed acknowledgement, the eel have been fed");
                 //TODO - add fed event that logs to db
             }
             // the text is temperature
@@ -127,13 +114,13 @@ namespace EelData.Networking
             else if (text.ToLower().StartsWith("1") || text.ToLower().StartsWith("2"))
             {
                 //_eelClient.SensorData.Temp = text;
+                //TODO - save to model
             }
             else
             {
-                _loggerChain.LogMessage(AbstractLogger.Info,"Text is an invalid request");
                 byte[] data = Encoding.ASCII.GetBytes("Invalid request");
                 current.Send(data);
-                _loggerChain.LogMessage(AbstractLogger.Info, "Warning Sent");
+                LoggerSingleton.Instance.Log("The client sent an invalid request, warning sent");
             }
             current.BeginReceive(_buffer, 0, _bufferSize, SocketFlags.None, ReceiveCallback, current);
         }
@@ -143,7 +130,7 @@ namespace EelData.Networking
             Socket socket = (Socket)AR.AsyncState;
             if (socket != null)
             {
-                _loggerChain.LogMessage(AbstractLogger.Info, "Client disconnected...");
+                LoggerSingleton.Instance.Log("Client disconnected");
                 socket.EndSend(AR);
             }
         }
