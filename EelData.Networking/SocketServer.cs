@@ -74,20 +74,20 @@ namespace EelData.Networking
                     if (command.ToLower() == "feed")
                     {
                         // send data to the client device (arduino)
-                        Console.WriteLine("Sending feed command to client...");
+                        LoggerSingleton.Instance.Log("Sending feed command to client...");
                         byte[] clientData = Encoding.ASCII.GetBytes("1$");
+                        clientSocket.Send(clientData);
+
 
                         // notify the connected windows application
-                        byte[] data = Encoding.ASCII.GetBytes("");
+                        LoggerSingleton.Instance.Log("Sending ack command to connected windows application");
+                        byte[] data = Encoding.ASCII.GetBytes("ack");
                         current.Send(data);
-
-                        clientSocket.Send(clientData);
-                        Console.WriteLine("Feed command sent to client");
                     }
                     else
                     {
                         // invalid command
-
+                        // notify the connected user that the IP address entered wasn't found
                     } 
                 }
             }
