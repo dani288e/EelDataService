@@ -14,7 +14,7 @@ namespace EelData
         private static AbstractLogger GetChainOfLoggers()
         {
             AbstractLogger errorLogger = new FileLogger(AbstractLogger.Error);
-            AbstractLogger fileLogger = new FileLogger(AbstractLogger.Debug);
+            AbstractLogger fileLogger = new DebugLogger(AbstractLogger.Debug);
 
             errorLogger.SetNextLogger(fileLogger);
             fileLogger.SetNextLogger(errorLogger);
