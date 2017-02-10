@@ -120,6 +120,7 @@ namespace EelData.Networking
             string text = Encoding.ASCII.GetString(receivedBuffer);
             LoggerSingleton.Instance.Log("Text received: " + text);
 
+            // arduino sends feed command
             if (text.ToLower().Contains("feed"))
             {
                 Console.WriteLine("Sending feed command to client...");
