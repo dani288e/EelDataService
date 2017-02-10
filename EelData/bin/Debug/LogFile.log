@@ -63,3 +63,14 @@
 [10-02-2017 14:44:15] Socket server started
 [10-02-2017 14:44:15] Service started
 [10-02-2017 14:44:30] Service stopped
+[11-02-2017 00:21:12] Starting service
+[11-02-2017 00:21:12] Setting up server...
+[11-02-2017 00:21:12] Socket server started
+[11-02-2017 00:21:12] Service started
+[11-02-2017 00:21:40] Client connected: 127.0.0.1:49340
+[11-02-2017 00:21:43] Text received: feed
+[11-02-2017 00:21:49] Text received: feed
+[11-02-2017 00:21:53] Text received: exit
+[11-02-2017 00:21:53] The client sent an invalid request, warning sent
+[11-02-2017 00:21:58] Text received: feed
+[11-02-2017 00:22:00] Client forcefully disconnected

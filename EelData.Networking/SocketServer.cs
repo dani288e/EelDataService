@@ -11,27 +11,11 @@ namespace EelData.Networking
     public class SocketServer
     {
         #region fields
-        private readonly Socket _serverSocket;
-        private List<Socket> _clientSockets;
+        private readonly Socket _serverSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+        private List<Socket> _clientSockets = new List<Socket>();
         private readonly byte[] _buffer = new byte[_bufferSize];
         private const int _bufferSize = 2048;
         private const int _port = 1337;
-        #endregion
-
-        #region constructor
-        private SocketServer()
-        {
-            try
-            {
-                _serverSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-                _clientSockets = new List<Socket>();
-            }
-            catch (SocketException ex)
-            {
-                LoggerSingleton.Instance.Log("Socket exception occurred when initializing serversocket and clientsockets", ex);
-                throw;
-            }
-        }
         #endregion
 
         public void SetupServer()
