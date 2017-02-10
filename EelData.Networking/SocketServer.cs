@@ -64,6 +64,7 @@ namespace EelData.Networking
         /// <param name="IP">IPAdress object, use this to send a command to a specific device</param>
         public void ReceiveCallback(IAsyncResult AR, IPAddress IP, string command)
         {
+            Socket current = (Socket)AR.AsyncState;
             try
             {
                 // try searching for the IP intered by the user
@@ -72,10 +73,19 @@ namespace EelData.Networking
                 {
                     if (command.ToLower() == "feed")
                     {
+                        Console.WriteLine("Sending feed command to client...");
+                        byte[] clientData = Encoding.ASCII.GetBytes("1$");
 
+
+                        byte[] data = Encoding.ASCII.GetBytes("");
+                        current.Send(data);
+
+                        clientSocket.Send(clientData);
+                        Console.WriteLine("Feed command sent to client");
                     }
-                    else if (command.ToLower() == "")
+                    else
                     {
+                        // invalid command
 
                     } 
                 }
@@ -111,7 +121,6 @@ namespace EelData.Networking
 
             if (text.ToLower().Contains("feed"))
             {
-                //Socket clientSocket = _clientSockets.Find(x => x.RemoteEndPoint.ToString() == ip.ToString());
                 Console.WriteLine("Sending feed command to client...");
                 byte[] data = Encoding.ASCII.GetBytes("1$");
                 current.Send(data);
