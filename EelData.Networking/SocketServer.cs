@@ -73,10 +73,11 @@ namespace EelData.Networking
                 {
                     if (command.ToLower() == "feed")
                     {
+                        // send data to the client device (arduino)
                         Console.WriteLine("Sending feed command to client...");
                         byte[] clientData = Encoding.ASCII.GetBytes("1$");
 
-
+                        // notify the connected windows application
                         byte[] data = Encoding.ASCII.GetBytes("");
                         current.Send(data);
 
