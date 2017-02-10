@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.IO;
 using System.Text;
-using System.Threading.Tasks;
-using System.Diagnostics;
+
 namespace EelData.Logger
 {
     public class DebugLogger : AbstractLogger
@@ -15,7 +13,11 @@ namespace EelData.Logger
 
         protected override void Write(string message)
         {
-            Console.WriteLine("Standard debug::Logger: " + message);
+            //Console.WriteLine("File::Logger: " + message);
+            using (StreamWriter sw = new StreamWriter(AppDomain.CurrentDomain.BaseDirectory + "\\LogFile.log", true))
+            {
+                sw.WriteLine(DateTime.Now.ToString("[dd-MM-yyyy HH:mm:ss]") + " DebugLogger: " + message);
+            }
         }
     }
 }

@@ -15,18 +15,17 @@ namespace EelData.Networking
         private const int _bufferSize = 2048;
         private const int _port = 1337;
         private readonly byte[] _buffer = new byte[_bufferSize];
-        private bool _shouldFeed = true;
         AbstractLogger _loggerChain = GetChainOfLoggers();
         #endregion
 
         private static AbstractLogger GetChainOfLoggers()
         {
-            AbstractLogger debugLogger = new ErrorLogger(AbstractLogger.Info);
-            AbstractLogger errorLogger = new ErrorLogger(AbstractLogger.Error);
-            AbstractLogger fileLogger = new ErrorLogger(AbstractLogger.Debug);
+            AbstractLogger infoLogger = new FileLogger(AbstractLogger.Info);
+            AbstractLogger errorLogger = new FileLogger(AbstractLogger.Error);
+            AbstractLogger fileLogger = new FileLogger(AbstractLogger.Debug);
 
             errorLogger.SetNextLogger(fileLogger);
-            fileLogger.SetNextLogger(debugLogger);
+            fileLogger.SetNextLogger(errorLogger);
 
             return errorLogger;
         }
@@ -60,14 +59,13 @@ namespace EelData.Networking
             }
             catch (ObjectDisposedException ex)
             {
-                //LoggerSingleton.Instance.WriteToLog(ex.ToString());
-                GetChainOfLoggers.
+                _loggerChain.LogMessage(3, ex.ToString());
                 return;
             }
 
             _clientSockets.Add(socket);
             socket.BeginReceive(_buffer, 0, _bufferSize, SocketFlags.None, ReceiveCallback, socket);
-            LoggerSingleton.Instance.WriteToLog("Client connected: " + socket.RemoteEndPoint.ToString());
+            _loggerChain.LogMessage(AbstractLogger.Debug, "Client connected: " + socket.RemoteEndPoint.ToString());
             _serverSocket.BeginAccept(AcceptCallback, null /* insert state stuff here */);
         }
 
@@ -95,7 +93,7 @@ namespace EelData.Networking
             }
             catch (SocketException)
             {
-                LoggerSingleton.Instance.WriteToLog("Client forcefully disconnected");
+                _loggerChain.LogMessage(AbstractLogger.Info, "Client forcefully disconnected");
                 current.Close();
                 _clientSockets.Remove(current);
                 return;
@@ -104,7 +102,7 @@ namespace EelData.Networking
             byte[] receivedBuffer = new byte[received];
             Array.Copy(_buffer, receivedBuffer, received);
             string text = Encoding.ASCII.GetString(receivedBuffer);
-            LoggerSingleton.Instance.WriteToLog("Text received: " + text);
+            _loggerChain.LogMessage(AbstractLogger.Info, "Text received: " + text);
 
             if (text.ToLower().Contains("feed"))
             {
@@ -116,12 +114,12 @@ namespace EelData.Networking
             }
             else if (text.ToLower().StartsWith("warning"))
             {
-                LoggerSingleton.Instance.WriteToLog("Warning received from client!");
+                _loggerChain.LogMessage(AbstractLogger.Info, "Warning received from client!");
                 // TODO - add warning handling code here
             }
             else if (text.ToLower().StartsWith("ack"))
             {
-                LoggerSingleton.Instance.WriteToLog("Client sent feed acknowledgement, the eel have been fed");
+                _loggerChain.LogMessage(AbstractLogger.Info, "Client sent feed acknowledgement, the eel have been fed");
                 //TODO - add fed event that logs to db
             }
             // the text is temperature
@@ -132,21 +130,21 @@ namespace EelData.Networking
             }
             else
             {
-                LoggerSingleton.Instance.WriteToLog("Text is an invalid request");
+                _loggerChain.LogMessage(AbstractLogger.Info,"Text is an invalid request");
                 byte[] data = Encoding.ASCII.GetBytes("Invalid request");
                 current.Send(data);
-                LoggerSingleton.Instance.WriteToLog("Warning Sent");
+                _loggerChain.LogMessage(AbstractLogger.Info, "Warning Sent");
             }
             current.BeginReceive(_buffer, 0, _bufferSize, SocketFlags.None, ReceiveCallback, current);
         }
 
-        private static void SendCallback(IAsyncResult AR)
+        private void SendCallback(IAsyncResult AR)
         {
             Socket socket = (Socket)AR.AsyncState;
             if (socket != null)
             {
+                _loggerChain.LogMessage(AbstractLogger.Info, "Client disconnected...");
                 socket.EndSend(AR);
-                LoggerSingleton.Instance.WriteToLog("Client disconnected...");
             }
         }
     }
