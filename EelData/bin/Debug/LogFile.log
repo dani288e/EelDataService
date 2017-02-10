@@ -52,3 +52,14 @@
 [09-02-2017 15:54:06] Text received: feed
 [09-02-2017 15:54:09] Client forcefully disconnected
 [09-02-2017 17:44:44] Service stopped
+[10-02-2017 14:17:06] Starting service
+[10-02-2017 14:17:06] Service started
+[10-02-2017 14:19:50] Client connected: 127.0.0.1:54394
+[10-02-2017 14:19:55] Text received: feed
+[10-02-2017 14:19:59] Client forcefully disconnected
+[10-02-2017 14:23:44] Service stopped
+[10-02-2017 14:44:15] Starting service
+[10-02-2017 14:44:15] Setting up server...
+[10-02-2017 14:44:15] Socket server started
+[10-02-2017 14:44:15] Service started
+[10-02-2017 14:44:30] Service stopped

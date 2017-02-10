@@ -18,11 +18,13 @@ namespace EelData
 
         protected override void OnStart(string[] args)
         {
-            Debugger.Launch();
+            // attach the logger so we can monitor the service activity
+            ILogObserver logger = new FlatFileObserver();
+            LoggerSingleton.Instance.Attach(logger);
+            LoggerSingleton.Instance.Log("Starting service");
+
             // start the socketserver
             SocketServerSingleton.Instance.SetupServer();
-
-
             _dataLoggerTimer = new Timer() { Interval = 150000 };
             _dataLoggerTimer.Elapsed += DataLoggerTimer_Elapsed;
 

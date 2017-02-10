@@ -7,7 +7,6 @@ namespace EelData.Logger
     {
         private List<ILogObserver> _logList = new List<ILogObserver>();
 
-
         public void Attach(ILogObserver observer)
         {
             _logList.Add(observer);

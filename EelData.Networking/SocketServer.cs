@@ -62,10 +62,28 @@ namespace EelData.Networking
         /// </summary>
         /// <param name="AR"></param>
         /// <param name="IP">IPAdress object, use this to send a command to a specific device</param>
-        public void ReceiveCallback(IAsyncResult AR, IPAddress IP)
+        public void ReceiveCallback(IAsyncResult AR, IPAddress IP, string command)
         {
+            try
+            {
+                // try searching for the IP intered by the user
+                Socket clientSocket = _clientSockets.Find(x => x.RemoteEndPoint.ToString() == IP.ToString());
+                if (command != null)
+                {
+                    if (command.ToLower() == "feed")
+                    {
 
-            Socket clientSocket = _clientSockets.Find(x => x.RemoteEndPoint.ToString() == IP.ToString());
+                    }
+                    else if (command.ToLower() == "")
+                    {
+
+                    } 
+                }
+            }
+            catch (Exception)
+            {
+                // the device was not found in the list
+            }
 
         }
 
