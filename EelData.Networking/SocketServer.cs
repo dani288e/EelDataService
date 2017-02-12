@@ -19,7 +19,7 @@ namespace EelData.Networking
         private readonly int _port = Int32.Parse(ConfigurationManager.AppSettings["Port"]);
         #endregion
 
-        public void SetupServer()
+        public bool SetupServer()
         {
             LoggerSingleton.Instance.Log("Setting up server...");
 
@@ -30,10 +30,12 @@ namespace EelData.Networking
                 _serverSocket.Listen(5);
                 _serverSocket.BeginAccept(AcceptCallback, null /* replace null with object state */);
                 LoggerSingleton.Instance.Log("Socket server started");
+                return true;
             }
             catch (Exception ex)
             {
                 LoggerSingleton.Instance.Log("The following error occurred on setupserver", ex);
+                return false;
                 throw;
             }
         }
