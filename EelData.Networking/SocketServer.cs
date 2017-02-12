@@ -5,6 +5,7 @@ using System.Net.Sockets;
 using System.Text;
 using EelData.Logger;
 using EelData.Model;
+using System.Configuration;
 
 namespace EelData.Networking
 {
@@ -15,18 +16,19 @@ namespace EelData.Networking
         private List<Socket> _clientSockets = new List<Socket>();
         private readonly byte[] _buffer = new byte[_bufferSize];
         private const int _bufferSize = 2048;
-        private const int _port = 1337;
+        private readonly int _port = Int32.Parse(ConfigurationManager.AppSettings["Port"]);
         #endregion
 
         public void SetupServer()
         {
+            LoggerSingleton.Instance.Log("Setting up server...");
+
             try
             {
-                LoggerSingleton.Instance.Log("Setting up server...");
                 _serverSocket.Bind(new IPEndPoint(IPAddress.Any, _port));
                 // place the socket in a listen state. Max queue of 5 connections at a time
                 _serverSocket.Listen(5);
-                _serverSocket.BeginAccept(AcceptCallback, null /* insert object state here */);
+                _serverSocket.BeginAccept(AcceptCallback, null /* replace null with object state */);
                 LoggerSingleton.Instance.Log("Socket server started");
             }
             catch (Exception ex)
@@ -70,16 +72,25 @@ namespace EelData.Networking
             {
                 socket = _serverSocket.EndAccept(AR);
             }
-            catch (ObjectDisposedException ex)
+            catch (Exception ex)
             {
-                LoggerSingleton.Instance.Log("An object disposed exception occurred on AcceptingCallback", ex);
+                LoggerSingleton.Instance.Log("An exception occurred on AcceptingCallback when attempting to EndAccept", ex);
                 return;
             }
 
             _clientSockets.Add(socket);
-            socket.BeginReceive(_buffer, 0, _bufferSize, SocketFlags.None, ReceiveCallback, socket);
-            LoggerSingleton.Instance.Log("Client connected: " + socket.RemoteEndPoint.ToString());
-            _serverSocket.BeginAccept(AcceptCallback, null /* insert state stuff here */);
+
+            try
+            {
+                socket.BeginReceive(_buffer, 0, _bufferSize, SocketFlags.None, ReceiveCallback, socket);
+                _serverSocket.BeginAccept(AcceptCallback, null /* insert state stuff here */);
+                LoggerSingleton.Instance.Log("Client connected: " + socket.RemoteEndPoint.ToString());
+            }
+            catch (Exception ex)
+            {
+                LoggerSingleton.Instance.Log("An exception occurred on AcceptingCallback when attempting to begingreceive/beginaccept", ex);
+                throw;
+            }
         }
 
         /// <summary>
