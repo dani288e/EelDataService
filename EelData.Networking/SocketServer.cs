@@ -5,6 +5,7 @@ using System.Net.Sockets;
 using System.Text;
 using EelData.Logger;
 using EelData.Model;
+using EelData.ClientCommunicator;
 using System.Configuration;
 
 namespace EelData.Networking

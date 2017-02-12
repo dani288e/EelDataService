@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace EelData.Logger
 {
     /// <summary>
-    /// The Observer Design Pattern allows Observer classes to attach itself to 
+    /// The Observer Design Pattern allows Observer classes to attach itself
     /// this Logger class and be notified if certain events occur. 
     /// </summary>
     public class Logger

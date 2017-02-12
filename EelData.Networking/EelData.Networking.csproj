@@ -48,6 +48,10 @@
     <Compile Include="StateObject.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\EelData.ClientCommunicator\EelData.ClientCommunicator.csproj">
+      <Project>{6d48d273-875c-4957-9ec2-dec9f2e21b34}</Project>
+      <Name>EelData.ClientCommunicator</Name>
+    </ProjectReference>
     <ProjectReference Include="..\EelData.Logger\EelData.Logger.csproj">
       <Project>{02c2ce00-4c73-4a6a-8a6d-6624fcff0bf0}</Project>
       <Name>EelData.Logger</Name>
