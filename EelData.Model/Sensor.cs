@@ -2,7 +2,7 @@
 
 namespace EelData.Model
 {
-    public class BassinSensor
+    public class Sensor
     {
         public IPAddress IP { get; set; }
     }
