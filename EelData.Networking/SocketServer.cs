@@ -109,24 +109,25 @@ namespace EelData.Networking
                 Socket clientSocket = _clientSockets.Find(x => x.RemoteEndPoint.ToString() == IP.ToString());
                 if (command != null)
                 {
-                    if (command.ToLower() == "feed")
-                    {
-                        // send data to the client device (arduino)
-                        LoggerSingleton.Instance.Log("Sending feed command to client...");
-                        byte[] clientData = Encoding.ASCII.GetBytes("1$");
-                        clientSocket.Send(clientData);
+                    ClientCommunicator.TextHandlerSingleton.Instance.GetRequest(command, current);
+                    //if (command.ToLower() == "feed")
+                    //{
+                    //    // send data to the client device (arduino)
+                    //    LoggerSingleton.Instance.Log("Sending feed command to client...");
+                    //    byte[] clientData = Encoding.ASCII.GetBytes("1$");
+                    //    clientSocket.Send(clientData);
 
 
-                        // notify the connected windows application
-                        LoggerSingleton.Instance.Log("Sending ack command to connected windows application");
-                        byte[] data = Encoding.ASCII.GetBytes("ack");
-                        current.Send(data);
-                    }
-                    else
-                    {
-                        // invalid command
-                        // notify the connected user that the IP address entered wasn't found
-                    }
+                    //    // notify the connected windows application
+                    //    LoggerSingleton.Instance.Log("Sending ack command to connected windows application");
+                    //    byte[] data = Encoding.ASCII.GetBytes("ack");
+                    //    current.Send(data);
+                    //}
+                    //else
+                    //{
+                    //    // invalid command
+                    //    // notify the connected user that the IP address entered wasn't found
+                    //}
                 }
             }
             catch (Exception ex)

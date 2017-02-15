@@ -34,7 +34,7 @@ namespace EelData
         protected override void OnStop()
         {
             SocketServerSingleton.Instance.CloseAllSockets();
-            LoggerSingleton.Instance.Log("Service stopped");
+            LoggerSingleton.Instance.Log("Service stopped gracefully");
             _dataLoggerTimer.Enabled = false;
         }
 

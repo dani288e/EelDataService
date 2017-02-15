@@ -102,3 +102,13 @@ Parameter name: String
 [15-02-2017 09:18:17] Socket server started
 [15-02-2017 09:18:17] Service started
 [15-02-2017 09:18:51] Service stopped
+[15-02-2017 09:33:06] Starting service
+[15-02-2017 09:33:06] Setting up server...
+[15-02-2017 09:33:06] Socket server started
+[15-02-2017 09:33:06] Service started
+[15-02-2017 09:33:31] Client connected: 127.0.0.1:56777
+[15-02-2017 09:33:36] Text received: feed
+[15-02-2017 09:33:36] Sending feed command to client...
+[15-02-2017 09:33:36] Feed command sent to client
+[15-02-2017 09:33:41] Client forcefully disconnected
+[15-02-2017 09:33:46] Service stopped
