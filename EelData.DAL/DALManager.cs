@@ -4,6 +4,22 @@ namespace EelData.DAL
 {
     public class DALManager
     {
+        public void SaveBassin(Model.Bassin record)
+        {
+            using (EelDataEntities context = new EelDataEntities())
+            {
+                Bassin query = (from o in context.Bassins
+                                where o.HallID == record.ID
+                                select o).FirstOrDefault();
+
+                if (query == null)
+                {
+                    Bassin bassinE = new Bassin();
+                    bassinE.
+                }
+            }
+        }
+
         public void SaveHall(Model.Hall record)
         {
             using (EelDataEntities context = new EelDataEntities())
