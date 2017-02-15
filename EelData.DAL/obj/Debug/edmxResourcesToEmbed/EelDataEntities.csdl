@@ -17,6 +17,7 @@
     </Key>
     <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <NavigationProperty Name="Bassins" Relationship="Self.FK_Bassin_Hall" FromRole="Hall" ToRole="Bassin" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
   </EntityType>
   <EntityType Name="Sensor">
     <Key>

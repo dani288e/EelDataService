@@ -12,6 +12,7 @@
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="Sensor">
     <Key>

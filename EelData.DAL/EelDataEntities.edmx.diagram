@@ -10,7 +10,7 @@
         <EntityTypeShape EntityType="Ringsted1Model.Sensor" Width="1.5" PointX="5.25" PointY="2.625" IsExpanded="true" />
         <EntityTypeShape EntityType="Ringsted1Model.SensorData" Width="1.5" PointX="7.5" PointY="2.5" IsExpanded="true" />
         <EntityTypeShape EntityType="Ringsted1Model.Silo" Width="1.5" PointX="5.25" PointY="5.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="Ringsted1Model.sysdiagram" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Ringsted1Model.sysdiagram" Width="1.5" PointX="11" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Ringsted1Model.Trigger" Width="1.5" PointX="8.25" PointY="5.875" IsExpanded="true" />
         <EntityTypeShape EntityType="Ringsted1Model.Warning" Width="1.5" PointX="6" PointY="7.875" IsExpanded="true" />
         <AssociationConnector Association="Ringsted1Model.FK_Bassin_Hall" ManuallyRouted="false" />

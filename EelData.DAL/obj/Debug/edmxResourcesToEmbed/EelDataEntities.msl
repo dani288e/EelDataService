@@ -12,6 +12,7 @@
     <EntitySetMapping Name="Halls">
       <EntityTypeMapping TypeName="Ringsted1Model.Hall">
         <MappingFragment StoreEntitySet="Hall">
+          <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>
