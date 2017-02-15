@@ -2,4 +2,3 @@ C:\Users\danie\OneDrive\dev\c#\EelData\EelData.Logger\bin\Debug\EelData.Logger.d
 C:\Users\danie\OneDrive\dev\c#\EelData\EelData.Logger\bin\Debug\EelData.Logger.pdb
 C:\Users\danie\OneDrive\dev\c#\EelData\EelData.Logger\obj\Debug\EelData.Logger.dll
 C:\Users\danie\OneDrive\dev\c#\EelData\EelData.Logger\obj\Debug\EelData.Logger.pdb
-C:\Users\danie\OneDrive\dev\c#\EelData\EelData.Logger\obj\Debug\EelData.Logger.csprojResolveAssemblyReference.cache

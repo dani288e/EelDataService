@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 
 namespace EelData.DAL
 {
@@ -15,7 +16,7 @@ namespace EelData.DAL
                 if (query == null)
                 {
                     Bassin bassinE = new Bassin();
-                    bassinE.
+                    //bassinE.
                 }
             }
         }
@@ -37,6 +38,26 @@ namespace EelData.DAL
                     context.SaveChanges();
                 }
             }
+        }
+
+        public void SaveSensorData()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SaveSensor()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SaveTrigger()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SaveWarning()
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -7,10 +7,12 @@ namespace EelData.Test
     public class DALTests
     {
         private Model.Hall _hall;
+        private Model.Bassin _bassin;
 
         [TestInitialize]
         public void Init()
         {
+            _bassin = new Model.Bassin();
             _hall = new Model.Hall();
             _hall.Name = "Test";
         }
@@ -24,7 +26,7 @@ namespace EelData.Test
         [TestMethod]
         public void SaveBassinTest()
         {
-            DALManagerSingleton.Instance.SaveBassin();
+            DALManagerSingleton.Instance.SaveBassin(_bassin);
         }
     }
 }

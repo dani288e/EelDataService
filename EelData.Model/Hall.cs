@@ -1,4 +1,6 @@
-﻿namespace EelData.Model
+﻿using System.Collections.Generic;
+
+namespace EelData.Model
 {
     public class Hall
     {

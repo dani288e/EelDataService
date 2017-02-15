@@ -1,11 +1,11 @@
+C:\Users\danie\OneDrive\dev\c#\EelData\EelData.Networking\obj\Debug\EelData.Networking.csprojResolveAssemblyReference.cache
 C:\Users\danie\OneDrive\dev\c#\EelData\EelData.Networking\bin\Debug\EelData.Networking.dll
 C:\Users\danie\OneDrive\dev\c#\EelData\EelData.Networking\bin\Debug\EelData.Networking.pdb
+C:\Users\danie\OneDrive\dev\c#\EelData\EelData.Networking\bin\Debug\EelData.ClientCommunicator.dll
 C:\Users\danie\OneDrive\dev\c#\EelData\EelData.Networking\bin\Debug\EelData.Logger.dll
+C:\Users\danie\OneDrive\dev\c#\EelData\EelData.Networking\bin\Debug\EelData.Model.dll
+C:\Users\danie\OneDrive\dev\c#\EelData\EelData.Networking\bin\Debug\EelData.ClientCommunicator.pdb
 C:\Users\danie\OneDrive\dev\c#\EelData\EelData.Networking\bin\Debug\EelData.Logger.pdb
-C:\Users\danie\OneDrive\dev\c#\EelData\EelData.Networking\obj\Debug\EelData.Networking.csprojResolveAssemblyReference.cache
+C:\Users\danie\OneDrive\dev\c#\EelData\EelData.Networking\bin\Debug\EelData.Model.pdb
 C:\Users\danie\OneDrive\dev\c#\EelData\EelData.Networking\obj\Debug\EelData.Networking.dll
 C:\Users\danie\OneDrive\dev\c#\EelData\EelData.Networking\obj\Debug\EelData.Networking.pdb
-C:\Users\danie\OneDrive\dev\c#\EelData\EelData.Networking\bin\Debug\EelData.Model.dll
-C:\Users\danie\OneDrive\dev\c#\EelData\EelData.Networking\bin\Debug\EelData.Model.pdb
-C:\Users\danie\OneDrive\dev\c#\EelData\EelData.Networking\bin\Debug\EelData.ClientCommunicator.dll
-C:\Users\danie\OneDrive\dev\c#\EelData\EelData.Networking\bin\Debug\EelData.ClientCommunicator.pdb
