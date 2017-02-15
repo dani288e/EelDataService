@@ -24,7 +24,7 @@ namespace EelData.Test
         [TestMethod]
         public void SaveBassinTest()
         {
-
+            DALManagerSingleton.Instance.SaveBassin();
         }
     }
 }
