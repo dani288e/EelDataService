@@ -1,12 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using EelData.DAL;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace EelData.Test
 {
-    class DALTests
+    [TestClass]
+    public class DALTests
     {
+        private Model.Hall _hall;
+
+        [TestInitialize]
+        public void Init()
+        {
+            _hall = new Model.Hall();
+            _hall.Name = "Test";
+        }
+
+        [TestMethod]
+        public void SaveHallTest()
+        {
+            DALManagerSingleton.Instance.SaveHall(_hall);
+        }
+
+        [TestMethod]
+        public void SaveBassinTest()
+        {
+
+        }
     }
 }

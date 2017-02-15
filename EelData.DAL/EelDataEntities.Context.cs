@@ -13,10 +13,10 @@ namespace EelData.DAL
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class Ringsted1EntitiesLocal : DbContext
+    public partial class EelDataEntities : DbContext
     {
-        public Ringsted1EntitiesLocal()
-            : base("name=Ringsted1EntitiesLocal")
+        public EelDataEntities()
+            : base("name=EelDataEntities")
         {
         }
     

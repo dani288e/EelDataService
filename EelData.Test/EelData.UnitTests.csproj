@@ -38,6 +38,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.VisualStudio.TestPlatform.TestFramework, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\MSTest.TestFramework.1.0.8-rc2\lib\net45\Microsoft.VisualStudio.TestPlatform.TestFramework.dll</HintPath>
     </Reference>
@@ -45,6 +51,7 @@
       <HintPath>..\packages\MSTest.TestFramework.1.0.8-rc2\lib\net45\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
@@ -62,6 +69,14 @@
     <ProjectReference Include="..\EelData.ClientCommunicator\EelData.ClientCommunicator.csproj">
       <Project>{6d48d273-875c-4957-9ec2-dec9f2e21b34}</Project>
       <Name>EelData.ClientCommunicator</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EelData.DAL\EelData.DAL.csproj">
+      <Project>{a8dd3928-d03d-40c6-9e82-678f95fec70f}</Project>
+      <Name>EelData.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EelData.Model\EelData.Model.csproj">
+      <Project>{8499785e-c88e-493a-b2f9-482211dd7f26}</Project>
+      <Name>EelData.Model</Name>
     </ProjectReference>
     <ProjectReference Include="..\EelData.Networking\EelData.Networking.csproj">
       <Project>{a31822c4-b8ec-47c3-a067-021a3ad0d6b1}</Project>

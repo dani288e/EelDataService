@@ -118,5 +118,11 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EelData.Model\EelData.Model.csproj">
+      <Project>{8499785e-c88e-493a-b2f9-482211dd7f26}</Project>
+      <Name>EelData.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

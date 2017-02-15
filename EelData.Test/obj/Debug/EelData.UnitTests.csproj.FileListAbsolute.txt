@@ -17,3 +17,12 @@ C:\Users\danie\OneDrive\dev\c#\EelData\EelData.Test\obj\Debug\EelData.Test.pdb
 C:\Users\danie\OneDrive\dev\c#\EelData\EelData.Test\bin\Debug\EelData.Test.dll.config
 C:\Users\danie\OneDrive\dev\c#\EelData\EelData.Test\bin\Debug\EelData.ClientCommunicator.dll
 C:\Users\danie\OneDrive\dev\c#\EelData\EelData.Test\bin\Debug\EelData.ClientCommunicator.pdb
+C:\Users\danie\OneDrive\dev\c#\EelData\EelData.Test\bin\Debug\EelData.DAL.dll
+C:\Users\danie\OneDrive\dev\c#\EelData\EelData.Test\bin\Debug\EelData.Model.dll
+C:\Users\danie\OneDrive\dev\c#\EelData\EelData.Test\bin\Debug\EntityFramework.dll
+C:\Users\danie\OneDrive\dev\c#\EelData\EelData.Test\bin\Debug\EelData.DAL.pdb
+C:\Users\danie\OneDrive\dev\c#\EelData\EelData.Test\bin\Debug\EelData.DAL.dll.config
+C:\Users\danie\OneDrive\dev\c#\EelData\EelData.Test\bin\Debug\EelData.Model.pdb
+C:\Users\danie\OneDrive\dev\c#\EelData\EelData.Test\bin\Debug\EntityFramework.xml
+C:\Users\danie\OneDrive\dev\c#\EelData\EelData.Test\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\danie\OneDrive\dev\c#\EelData\EelData.Test\bin\Debug\EntityFramework.SqlServer.xml

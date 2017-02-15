@@ -8,3 +8,5 @@ C:\Users\danie\OneDrive\dev\c#\EelData\EelData.DAL\bin\Debug\EntityFramework.Sql
 C:\Users\danie\OneDrive\dev\c#\EelData\EelData.DAL\obj\Debug\EelData.DAL.csprojResolveAssemblyReference.cache
 C:\Users\danie\OneDrive\dev\c#\EelData\EelData.DAL\obj\Debug\EelData.DAL.dll
 C:\Users\danie\OneDrive\dev\c#\EelData\EelData.DAL\obj\Debug\EelData.DAL.pdb
+C:\Users\danie\OneDrive\dev\c#\EelData\EelData.DAL\bin\Debug\EelData.Model.dll
+C:\Users\danie\OneDrive\dev\c#\EelData\EelData.DAL\bin\Debug\EelData.Model.pdb
