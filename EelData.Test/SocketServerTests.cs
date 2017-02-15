@@ -9,10 +9,9 @@ namespace EelData.Test
     [TestClass]
     public class SocketServerTests
     {
-        [TestMethod]
-        public void SetupServer()
+        public SocketServerTests()
         {
-            Assert.IsTrue(SocketServerSingleton.Instance.SetupServer());
+            SocketServerSingleton.Instance.SetupServer();
         }
 
         [TestMethod]

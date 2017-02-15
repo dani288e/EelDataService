@@ -20,7 +20,7 @@ namespace EelData.Networking
         private readonly int _port = Int32.Parse(ConfigurationManager.AppSettings["Port"]);
         #endregion
 
-        public bool SetupServer()
+        public void SetupServer()
         {
             LoggerSingleton.Instance.Log("Setting up server...");
 
@@ -31,12 +31,10 @@ namespace EelData.Networking
                 _serverSocket.Listen(5);
                 _serverSocket.BeginAccept(AcceptCallback, null /* replace null with object state */);
                 LoggerSingleton.Instance.Log("Socket server started");
-                return true;
             }
             catch (Exception ex)
             {
                 LoggerSingleton.Instance.Log("The following error occurred on setupserver", ex);
-                return false;
                 throw;
             }
         }
@@ -165,37 +163,9 @@ namespace EelData.Networking
             string text = Encoding.ASCII.GetString(receivedBuffer);
             LoggerSingleton.Instance.Log("Text received: " + text);
 
-            // arduino sends feed command
-            if (text.ToLower().Contains("feed"))
-            {
-                Console.WriteLine("Sending feed command to client...");
-                byte[] data = Encoding.ASCII.GetBytes("1$");
-                current.Send(data);
-                Console.WriteLine("Feed command sent to client");
-            }
-            else if (text.ToLower().StartsWith("warning"))
-            {
-                LoggerSingleton.Instance.Log("Warning received from client");
-                // TODO - add warning handling code here
-            }
-            else if (text.ToLower().StartsWith("ack"))
-            {
-                LoggerSingleton.Instance.Log("Client send feed acknowledgement, the eel have been fed");
-                //TODO - add fed event that logs to db
-            }
-            // the text is temperature
-            // TODO - Save to model and db
-            else if (text.ToLower().StartsWith("1") || text.ToLower().StartsWith("2"))
-            {
-                //_eelClient.SensorData.Temp = text;
-                //TODO - save to model
-            }
-            else
-            {
-                byte[] data = Encoding.ASCII.GetBytes("Invalid request");
-                current.Send(data);
-                LoggerSingleton.Instance.Log("The client sent an invalid request, warning sent");
-            }
+            // TODO - test this
+            TextHandlerSingleton.Instance.GetRequest(text, current);
+
             current.BeginReceive(_buffer, 0, _bufferSize, SocketFlags.None, ReceiveCallback, current);
         }
 

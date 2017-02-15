@@ -97,3 +97,8 @@ Parameter name: String
 [12-02-2017 12:01:20] The client sent an invalid request, warning sent
 [12-02-2017 12:01:22] Client forcefully disconnected
 [12-02-2017 12:01:50] Service stopped
+[15-02-2017 09:18:17] Starting service
+[15-02-2017 09:18:17] Setting up server...
+[15-02-2017 09:18:17] Socket server started
+[15-02-2017 09:18:17] Service started
+[15-02-2017 09:18:51] Service stopped

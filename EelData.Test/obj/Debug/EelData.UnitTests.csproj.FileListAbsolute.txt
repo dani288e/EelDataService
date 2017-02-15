@@ -15,3 +15,5 @@ C:\Users\danie\OneDrive\dev\c#\EelData\EelData.Test\obj\Debug\EelData.UnitTests.
 C:\Users\danie\OneDrive\dev\c#\EelData\EelData.Test\obj\Debug\EelData.Test.dll
 C:\Users\danie\OneDrive\dev\c#\EelData\EelData.Test\obj\Debug\EelData.Test.pdb
 C:\Users\danie\OneDrive\dev\c#\EelData\EelData.Test\bin\Debug\EelData.Test.dll.config
+C:\Users\danie\OneDrive\dev\c#\EelData\EelData.Test\bin\Debug\EelData.ClientCommunicator.dll
+C:\Users\danie\OneDrive\dev\c#\EelData\EelData.Test\bin\Debug\EelData.ClientCommunicator.pdb

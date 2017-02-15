@@ -44,6 +44,13 @@
     <Compile Include="Commands.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TextHandler.cs" />
+    <Compile Include="TextHandlerSingleton.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EelData.Logger\EelData.Logger.csproj">
+      <Project>{02c2ce00-4c73-4a6a-8a6d-6624fcff0bf0}</Project>
+      <Name>EelData.Logger</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Ringsted1ModelStoreContainer" CdmEntityContainer="Ringsted1EntitiesLocal">
+    <EntitySetMapping Name="Bassins">
+      <EntityTypeMapping TypeName="Ringsted1Model.Bassin">
+        <MappingFragment StoreEntitySet="Bassin">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="HallID" ColumnName="HallID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Halls">
+      <EntityTypeMapping TypeName="Ringsted1Model.Hall">
+        <MappingFragment StoreEntitySet="Hall">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sensors">
+      <EntityTypeMapping TypeName="Ringsted1Model.Sensor">
+        <MappingFragment StoreEntitySet="Sensor">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="BassinID" ColumnName="BassinID" />
+          <ScalarProperty Name="IPAddress" ColumnName="IPAddress" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SensorDatas">
+      <EntityTypeMapping TypeName="Ringsted1Model.SensorData">
+        <MappingFragment StoreEntitySet="SensorData">
+          <ScalarProperty Name="SensorID" ColumnName="SensorID" />
+          <ScalarProperty Name="AmbientTemperature" ColumnName="AmbientTemperature" />
+          <ScalarProperty Name="WaterLevel" ColumnName="WaterLevel" />
+          <ScalarProperty Name="WindSpeed" ColumnName="WindSpeed" />
+          <ScalarProperty Name="WaterTemperature" ColumnName="WaterTemperature" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Silos">
+      <EntityTypeMapping TypeName="Ringsted1Model.Silo">
+        <MappingFragment StoreEntitySet="Silo">
+          <ScalarProperty Name="BassinID" ColumnName="BassinID" />
+          <ScalarProperty Name="FoodAmount" ColumnName="FoodAmount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="Ringsted1Model.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Triggers">
+      <EntityTypeMapping TypeName="Ringsted1Model.Trigger">
+        <MappingFragment StoreEntitySet="Trigger">
+          <ScalarProperty Name="BassinID" ColumnName="BassinID" />
+          <ScalarProperty Name="WarningID" ColumnName="WarningID" />
+          <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Warnings">
+      <EntityTypeMapping TypeName="Ringsted1Model.Warning">
+        <MappingFragment StoreEntitySet="Warning">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Priority" ColumnName="Priority" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

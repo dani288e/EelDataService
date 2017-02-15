@@ -10,3 +10,5 @@ C:\Users\danie\OneDrive\dev\c#\EelData\EelData\obj\Debug\EelData.ProjectInstalle
 C:\Users\danie\OneDrive\dev\c#\EelData\EelData\obj\Debug\EelData.csproj.GenerateResource.Cache
 C:\Users\danie\OneDrive\dev\c#\EelData\EelData\obj\Debug\EelData.exe
 C:\Users\danie\OneDrive\dev\c#\EelData\EelData\obj\Debug\EelData.pdb
+C:\Users\danie\OneDrive\dev\c#\EelData\EelData\bin\Debug\EelData.ClientCommunicator.dll
+C:\Users\danie\OneDrive\dev\c#\EelData\EelData\bin\Debug\EelData.ClientCommunicator.pdb

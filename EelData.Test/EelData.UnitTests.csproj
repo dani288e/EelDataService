@@ -48,6 +48,9 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClientCommunicationTests.cs" />
+    <Compile Include="DALTests.cs" />
+    <Compile Include="LoggerTests.cs" />
     <Compile Include="SocketServerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -56,6 +59,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\EelData.ClientCommunicator\EelData.ClientCommunicator.csproj">
+      <Project>{6d48d273-875c-4957-9ec2-dec9f2e21b34}</Project>
+      <Name>EelData.ClientCommunicator</Name>
+    </ProjectReference>
     <ProjectReference Include="..\EelData.Networking\EelData.Networking.csproj">
       <Project>{a31822c4-b8ec-47c3-a067-021a3ad0d6b1}</Project>
       <Name>EelData.Networking</Name>
