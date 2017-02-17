@@ -104,12 +104,41 @@ namespace EelData.DAL
 
         public void SaveTrigger(Model.Trigger record, int bassinid, int warningid)
         {
+            using (EelDataEntities context = new EelDataEntities())
+            {
+                Trigger query = (from o in context.Triggers
+                                 where o.BassinID == bassinid
+                                 select o).FirstOrDefault();
 
+                if (query == null)
+                {
+                    Trigger triggerE = new Trigger();
+                    triggerE.DateTime = DateTime.Now;
+                    triggerE.WarningID = warningid;
+                    triggerE.BassinID = bassinid;
+                    context.Triggers.Add(triggerE);
+                    context.SaveChanges();
+                }
+            }
         }
 
-        public void SaveWarning()
+        public void SaveWarning(Model.Warning record, int id, byte priority, string message)
         {
-            throw new NotImplementedException();
+            using (EelDataEntities context = new EelDataEntities())
+            {
+                Warning query = (from o in context.Warnings
+                                 where o.ID == id
+                                 select o).FirstOrDefault();
+
+                if (query == null)
+                {
+                    Warning warningE = new Warning();
+                    warningE.Priority = priority;
+                    warningE.Message = message;
+                    context.Warnings.Add(warningE);
+                    context.SaveChanges();
+                }
+            }
         }
     }
 }

@@ -26,6 +26,12 @@ namespace EelData.Test
         }
 
         [TestMethod]
+        public void SaveTriggerTest()
+        {
+            DALManagerSingleton.Instance.SaveTrigger(_trigger, 1, 1);
+        }
+
+        [TestMethod]
         public void SaveTempsTest()
         {
             DALManagerSingleton.Instance.SaveSensorData(_sensorData, 1);

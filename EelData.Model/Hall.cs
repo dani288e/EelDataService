@@ -8,7 +8,8 @@ namespace EelData.Model
         public Sensor Sensor { get; set; }
         public SensorData SensorData { get; set; }
         public Silo Silo { get; set; }
-        public List<Bassin> Bassins { get; set; }
+        //public List<Bassin> Bassins { get; set; }
+
         public Hall()
         {
             Sensor = new Sensor();
