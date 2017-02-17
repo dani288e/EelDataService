@@ -5,18 +5,39 @@ namespace EelData.DAL
 {
     public class DALManager
     {
-        public void SaveBassin(Model.Bassin record)
+        public void SaveSilo(Model.Silo record, int bassinid)
+        {
+            using (EelDataEntities context = new EelDataEntities())
+            {
+                Silo query = (from o in context.Silos
+                                where o.BassinID == record.BassinID
+                                select o).FirstOrDefault();
+
+                if (query == null)
+                {
+                    Silo siloE = new Silo();
+                    siloE.BassinID = bassinid;
+                    siloE.FoodAmount = record.FoodAmount;
+                    context.Silos.Add(siloE);
+                    context.SaveChanges();
+                }
+            }
+        }
+
+        public void SaveBassin(Model.Bassin record, int hallid)
         {
             using (EelDataEntities context = new EelDataEntities())
             {
                 Bassin query = (from o in context.Bassins
-                                where o.HallID == record.ID
+                                where o.HallID == record.HallID
                                 select o).FirstOrDefault();
 
                 if (query == null)
                 {
                     Bassin bassinE = new Bassin();
-                    //bassinE.
+                    bassinE.HallID = hallid;
+                    context.Bassins.Add(bassinE);
+                    context.SaveChanges();
                 }
             }
         }
@@ -45,9 +66,23 @@ namespace EelData.DAL
             throw new NotImplementedException();
         }
 
-        public void SaveSensor()
+        public void SaveSensor(Model.Sensor record, int bassinid, string ip)
         {
-            throw new NotImplementedException();
+            using (EelDataEntities context = new EelDataEntities())
+            {
+                Sensor query = (from o in context.Sensors
+                                where o.BassinID == bassinid
+                                select o).FirstOrDefault();
+
+                if (query == null)
+                {
+                    Sensor sensorE = new Sensor();
+                    sensorE.BassinID = bassinid; // modify this needs to obtain id from model
+                    sensorE.IPAddress = ip; // modify this needs to obtain ip from model
+                    context.Sensors.Add(sensorE);
+                    context.SaveChanges();
+                }
+            }
         }
 
         public void SaveTrigger()

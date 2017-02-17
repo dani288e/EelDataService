@@ -1,9 +1,8 @@
-﻿using System.Net;
-
-namespace EelData.Model
+﻿namespace EelData.Model
 {
     public class Sensor
     {
-        public IPAddress IP { get; set; }
+        public int BassinID { get; set; }
+        public string IP { get; set; }
     }
 }
