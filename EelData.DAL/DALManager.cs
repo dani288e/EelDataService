@@ -61,11 +61,6 @@ namespace EelData.DAL
             }
         }
 
-        public void SaveSensorData()
-        {
-            throw new NotImplementedException();
-        }
-
         public void SaveSensor(Model.Sensor record, int bassinid, string ip)
         {
             using (EelDataEntities context = new EelDataEntities())
@@ -80,6 +75,28 @@ namespace EelData.DAL
                     sensorE.BassinID = bassinid; // modify this needs to obtain id from model
                     sensorE.IPAddress = ip; // modify this needs to obtain ip from model
                     context.Sensors.Add(sensorE);
+                    context.SaveChanges();
+                }
+            }
+        }
+
+        public void SaveSensorData(Model.SensorData record, int sensorid)
+        {
+            using (EelDataEntities context = new EelDataEntities())
+            {
+                SensorData query = (from o in context.SensorDatas
+                                    where o.SensorID == sensorid //record.SensorID
+                                    select o).FirstOrDefault();
+
+                if (query == null)
+                {
+                    SensorData sensorDataE = new SensorData();
+                    sensorDataE.SensorID = sensorid;
+                    sensorDataE.AmbientTemperature = null;
+                    sensorDataE.WaterLevel = null;
+                    sensorDataE.WindSpeed = null;
+                    sensorDataE.WaterTemperature = null;
+                    context.SensorDatas.Add(sensorDataE);
                     context.SaveChanges();
                 }
             }

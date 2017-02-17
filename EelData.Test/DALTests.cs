@@ -10,6 +10,7 @@ namespace EelData.Test
         private Model.Bassin _bassin;
         private Model.Silo _silo;
         private Model.Sensor _sensor;
+        private Model.SensorData _sensorData;
 
         [TestInitialize]
         public void Init()
@@ -18,7 +19,14 @@ namespace EelData.Test
             _hall = new Model.Hall();
             _silo = new Model.Silo();
             _sensor = new Model.Sensor();
+            _sensorData = new Model.SensorData();
             _hall.Name = "Test";
+        }
+
+        [TestMethod]
+        public void SaveTempsTest()
+        {
+            DALManagerSingleton.Instance.SaveSensorData(_sensorData, 1);
         }
 
         [TestMethod]
