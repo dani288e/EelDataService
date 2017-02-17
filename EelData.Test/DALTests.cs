@@ -11,6 +11,7 @@ namespace EelData.Test
         private Model.Silo _silo;
         private Model.Sensor _sensor;
         private Model.SensorData _sensorData;
+        private Model.Trigger _trigger;
 
         [TestInitialize]
         public void Init()
@@ -20,6 +21,7 @@ namespace EelData.Test
             _silo = new Model.Silo();
             _sensor = new Model.Sensor();
             _sensorData = new Model.SensorData();
+            _trigger = new Model.Trigger();
             _hall.Name = "Test";
         }
 

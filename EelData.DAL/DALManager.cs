@@ -102,9 +102,9 @@ namespace EelData.DAL
             }
         }
 
-        public void SaveTrigger()
+        public void SaveTrigger(Model.Trigger record, int bassinid, int warningid)
         {
-            throw new NotImplementedException();
+
         }
 
         public void SaveWarning()

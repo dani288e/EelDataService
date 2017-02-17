@@ -2,7 +2,7 @@
 {
     public class Warning
     {
-        public string Message { get; set; }
         public int Priority { get; set; }
+        public string Message { get; set; }
     }
 }
