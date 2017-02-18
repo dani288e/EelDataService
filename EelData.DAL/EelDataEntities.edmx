@@ -54,6 +54,8 @@
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Ringsted1.dbo.Trigger' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Trigger">
           <Key>
             <PropertyRef Name="BassinID" />
@@ -150,8 +152,14 @@
           <EntitySet Name="SensorData" EntityType="Self.SensorData" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Silo" EntityType="Self.Silo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Trigger" EntityType="Self.Trigger" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Warning" EntityType="Self.Warning" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Trigger" EntityType="Self.Trigger" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Trigger].[BassinID] AS [BassinID], 
+    [Trigger].[WarningID] AS [WarningID], 
+    [Trigger].[DateTime] AS [DateTime]
+    FROM [dbo].[Trigger] AS [Trigger]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_Bassin_Hall" Association="Self.FK_Bassin_Hall">
             <End Role="Hall" EntitySet="Hall" />
             <End Role="Bassin" EntitySet="Bassin" />

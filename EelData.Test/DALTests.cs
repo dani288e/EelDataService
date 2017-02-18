@@ -12,6 +12,7 @@ namespace EelData.Test
         private Model.Sensor _sensor;
         private Model.SensorData _sensorData;
         private Model.Trigger _trigger;
+        private Model.Warning _warning;
 
         [TestInitialize]
         public void Init()
@@ -22,7 +23,14 @@ namespace EelData.Test
             _sensor = new Model.Sensor();
             _sensorData = new Model.SensorData();
             _trigger = new Model.Trigger();
+            _warning = new Model.Warning();
             _hall.Name = "Test";
+        }
+
+        [TestMethod]
+        public void SaveWarningTest()
+        {
+            DALManagerSingleton.Instance.SaveWarning(_warning, 1, 10, "high temperature in bassin");
         }
 
         [TestMethod]
@@ -52,7 +60,6 @@ namespace EelData.Test
         [TestMethod]
         public void SaveBassinTest()
         {
-            // to add a new bassin, enter the number of the hall you want to add the bassin to
             DALManagerSingleton.Instance.SaveBassin(_bassin, 1);
         }
 

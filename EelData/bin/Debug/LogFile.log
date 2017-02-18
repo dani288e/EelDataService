@@ -112,3 +112,8 @@ Parameter name: String
 [15-02-2017 09:33:36] Feed command sent to client
 [15-02-2017 09:33:41] Client forcefully disconnected
 [15-02-2017 09:33:46] Service stopped
+[18-02-2017 13:07:15] Starting service
+[18-02-2017 13:07:15] Setting up server...
+[18-02-2017 13:07:15] Socket server started
+[18-02-2017 13:07:15] Service started
+[18-02-2017 13:07:33] Service stopped gracefully

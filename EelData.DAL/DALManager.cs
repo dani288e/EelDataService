@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using EelData.Logger;
 
 namespace EelData.DAL
 {
@@ -19,7 +20,14 @@ namespace EelData.DAL
                     siloE.BassinID = bassinid;
                     siloE.FoodAmount = record.FoodAmount;
                     context.Silos.Add(siloE);
-                    context.SaveChanges();
+                    try
+                    {
+                        context.SaveChanges();
+                    }
+                    catch (Exception ex)
+                    {
+                        LoggerSingleton.Instance.Log("An exception occurred when attempting to save a new silo to the database", ex);
+                    }
                 }
             }
         }
@@ -110,8 +118,19 @@ namespace EelData.DAL
                                  where o.BassinID == bassinid
                                  select o).FirstOrDefault();
 
-                if (query == null)
+                if (query != null)
                 {
+                    // fix this, this db insert exception
+                    Trigger triggerE = new Trigger();
+                    triggerE.DateTime = DateTime.Now;
+                    triggerE.BassinID = bassinid;
+                    triggerE.WarningID = warningid;
+                    context.Triggers.Add(triggerE);
+                    context.SaveChanges();
+                }
+                else
+                {
+                    // TODO - bassin id not found - create it
                     Trigger triggerE = new Trigger();
                     triggerE.DateTime = DateTime.Now;
                     triggerE.WarningID = warningid;

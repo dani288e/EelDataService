@@ -2,4 +2,3 @@ C:\Users\danie\OneDrive\dev\c#\EelData\EelData.Model\bin\Debug\EelData.Model.dll
 C:\Users\danie\OneDrive\dev\c#\EelData\EelData.Model\bin\Debug\EelData.Model.pdb
 C:\Users\danie\OneDrive\dev\c#\EelData\EelData.Model\obj\Debug\EelData.Model.dll
 C:\Users\danie\OneDrive\dev\c#\EelData\EelData.Model\obj\Debug\EelData.Model.pdb
-C:\Users\danie\OneDrive\dev\c#\EelData\EelData.Model\obj\Debug\EelData.Model.csprojResolveAssemblyReference.cache

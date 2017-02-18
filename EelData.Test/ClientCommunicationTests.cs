@@ -25,9 +25,6 @@ namespace EelData.Test
         {
             Socket _clientSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             _clientSocket.Connect(IPAddress.Loopback, 1337);
-            //string request = "Test string sent";
-            //byte[] buffer = Encoding.ASCII.GetBytes(request);
-            //_clientSocket.Send(buffer);
 
             TextHandlerSingleton.Instance.GetRequest("feed", _clientSocket);
         }

@@ -2,6 +2,7 @@
 using System.Text;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using EelData.Logger;
 
 namespace EelData.Test
 {
@@ -13,9 +14,7 @@ namespace EelData.Test
     {
         public LoggerTests()
         {
-            //
-            // TODO: Add constructor logic here
-            //
+
         }
 
         private TestContext testContextInstance;
@@ -59,11 +58,12 @@ namespace EelData.Test
         #endregion
 
         [TestMethod]
-        public void TestMethod1()
+        public void WriteToLogTest()
         {
-            //
-            // TODO: Add test logic here
-            //
+            LoggerSingleton.Instance.Log("Test log entry message");
+
+            NotSupportedException ex = new NotSupportedException();
+            LoggerSingleton.Instance.Log("Test log entry message with exception: ", ex);
         }
     }
 }

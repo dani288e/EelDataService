@@ -35,5 +35,10 @@ namespace EelData.Logger
                 obs.OnLog(message, ex);
             }
         }
+
+        public void Log(string v, NotSupportedException notSupportedException, object ex)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
