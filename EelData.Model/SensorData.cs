@@ -3,9 +3,9 @@
     public class SensorData
     {
         public int SensorID { get; set; }
-        public string AmbientTemperature { get; set; }
-        public string WaterTemperature { get; set; }
-        public string WaterLevel { get; set; }
-        public string WindSpeed { get; set; }
+        public byte AmbientTemperature { get; set; }
+        public byte WaterTemperature { get; set; }
+        public byte WaterLevel { get; set; }
+        public byte WindSpeed { get; set; }
     }
 }

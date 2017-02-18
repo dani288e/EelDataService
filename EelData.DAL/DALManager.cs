@@ -26,7 +26,7 @@ namespace EelData.DAL
                     }
                     catch (Exception ex)
                     {
-                        LoggerSingleton.Instance.Log("An exception occurred when attempting to save a new silo to the database", ex);
+                        LoggerSingleton.Instance.Log("An exception occurred when attempting to save a new silo to the database: ", ex);
                     }
                 }
             }
@@ -45,7 +45,14 @@ namespace EelData.DAL
                     Bassin bassinE = new Bassin();
                     bassinE.HallID = hallid;
                     context.Bassins.Add(bassinE);
-                    context.SaveChanges();
+                    try
+                    {
+                        context.SaveChanges();
+                    }
+                    catch (Exception ex)
+                    {
+                        LoggerSingleton.Instance.Log("An exception occurred when attempting to save a new bassin to the database: ", ex);
+                    }
                 }
             }
         }
@@ -64,58 +71,73 @@ namespace EelData.DAL
                     Hall hallE = new Hall();
                     hallE.Name = record.Name;
                     context.Halls.Add(hallE);
-                    context.SaveChanges();
+                    try
+                    {
+                        context.SaveChanges();
+
+                    }
+                    catch (Exception ex)
+                    {
+                        LoggerSingleton.Instance.Log("An exception occurred when attempting to save a new hall to the database: ", ex);
+                    }
                 }
             }
         }
 
-        public void SaveSensor(Model.Sensor record, int bassinid, string ip)
+        public void SaveSensor(Model.Sensor record)
         {
             using (EelDataEntities context = new EelDataEntities())
             {
                 Sensor query = (from o in context.Sensors
-                                where o.BassinID == bassinid
+                                where o.BassinID == record.BassinID
                                 select o).FirstOrDefault();
 
                 if (query == null)
                 {
                     Sensor sensorE = new Sensor();
-                    sensorE.BassinID = bassinid; // modify this needs to obtain id from model
-                    sensorE.IPAddress = ip; // modify this needs to obtain ip from model
+                    sensorE.BassinID = record.BassinID; 
+                    sensorE.IPAddress = record.IP; 
                     context.Sensors.Add(sensorE);
-                    context.SaveChanges();
+                    try
+                    {
+                        context.SaveChanges();
+                    }
+                    catch (Exception ex)
+                    {
+                        LoggerSingleton.Instance.Log("An exception occurred when attempting to save a new sensor to the database: ", ex);
+                    }
                 }
             }
         }
 
-        public void SaveSensorData(Model.SensorData record, int sensorid)
+        public void SaveSensorData(Model.SensorData record)
         {
             using (EelDataEntities context = new EelDataEntities())
             {
                 SensorData query = (from o in context.SensorDatas
-                                    where o.SensorID == sensorid //record.SensorID
+                                    where o.SensorID == record.SensorID
                                     select o).FirstOrDefault();
 
                 if (query == null)
                 {
                     SensorData sensorDataE = new SensorData();
-                    sensorDataE.SensorID = sensorid;
-                    sensorDataE.AmbientTemperature = null;
-                    sensorDataE.WaterLevel = null;
-                    sensorDataE.WindSpeed = null;
-                    sensorDataE.WaterTemperature = null;
+                    sensorDataE.SensorID = record.SensorID;
+                    sensorDataE.AmbientTemperature = record.AmbientTemperature;
+                    sensorDataE.WaterLevel = record.WaterLevel;
+                    sensorDataE.WindSpeed = record.WindSpeed;
+                    sensorDataE.WaterTemperature = record.WaterTemperature;
                     context.SensorDatas.Add(sensorDataE);
                     context.SaveChanges();
                 }
             }
         }
 
-        public void SaveTrigger(Model.Trigger record, int bassinid, int warningid)
+        public void SaveTrigger(Model.Trigger record)
         {
             using (EelDataEntities context = new EelDataEntities())
             {
                 Trigger query = (from o in context.Triggers
-                                 where o.BassinID == bassinid
+                                 where o.BassinID == record.BassinID
                                  select o).FirstOrDefault();
 
                 if (query != null)
@@ -123,41 +145,81 @@ namespace EelData.DAL
                     // fix this, this db insert exception
                     Trigger triggerE = new Trigger();
                     triggerE.DateTime = DateTime.Now;
-                    triggerE.BassinID = bassinid;
-                    triggerE.WarningID = warningid;
+                    triggerE.BassinID = record.BassinID;
+                    triggerE.WarningID = record.WarningID;
                     context.Triggers.Add(triggerE);
-                    context.SaveChanges();
+                    try
+                    {
+                        context.SaveChanges();
+                    }
+                    catch (Exception ex)
+                    {
+                        LoggerSingleton.Instance.Log("An exception occurred when attempting to save a new trigger to the database: ", ex);
+                    }
                 }
                 else
                 {
-                    // TODO - bassin id not found - create it
+                    // TODO - test this
                     Trigger triggerE = new Trigger();
                     triggerE.DateTime = DateTime.Now;
-                    triggerE.WarningID = warningid;
-                    triggerE.BassinID = bassinid;
+                    triggerE.WarningID = record.WarningID;
+                    triggerE.BassinID = record.BassinID;
                     context.Triggers.Add(triggerE);
-                    context.SaveChanges();
+                    try
+                    {
+                        context.SaveChanges();
+                    }
+                    catch (Exception ex)
+                    {
+                        LoggerSingleton.Instance.Log("An exception occurred when attempting to save a trigger to the database: ", ex);
+                    }
                 }
             }
         }
 
-        public void SaveWarning(Model.Warning record, int id, byte priority, string message)
+        public void SaveWarning(Model.Warning record)
         {
             using (EelDataEntities context = new EelDataEntities())
             {
                 Warning query = (from o in context.Warnings
-                                 where o.ID == id
+                                 where o.ID == 1
                                  select o).FirstOrDefault();
 
                 if (query == null)
                 {
                     Warning warningE = new Warning();
-                    warningE.Priority = priority;
-                    warningE.Message = message;
+                    warningE.Priority = record.Priority;
+                    warningE.Message = record.Message;
                     context.Warnings.Add(warningE);
-                    context.SaveChanges();
+                    try
+                    {
+                        context.SaveChanges();
+                    }
+                    catch (Exception ex)
+                    {
+                        LoggerSingleton.Instance.Log("An exception occurred when attempting to save a new warning to the database: ", ex);
+                    }
                 }
             }
         }
+
+        //public void SaveWarning(Model.Warning record, int id, byte priority, string message)
+        //{
+        //    using (EelDataEntities context = new EelDataEntities())
+        //    {
+        //        Warning query = (from o in context.Warnings
+        //                         where o.ID == id
+        //                         select o).FirstOrDefault();
+
+        //        if (query == null)
+        //        {
+        //            Warning warningE = new Warning();
+        //            warningE.Priority = priority;
+        //            warningE.Message = message;
+        //            context.Warnings.Add(warningE);
+        //            context.SaveChanges();
+        //        }
+        //    }
+        //}
     }
 }

@@ -30,8 +30,14 @@ namespace EelData.Test
         [TestMethod]
         public void SaveWarningTest()
         {
-            DALManagerSingleton.Instance.SaveWarning(_warning, 1, 10, "high temperature in bassin");
+            DALManagerSingleton.Instance.SaveWarning(_warning);
         }
+
+        //[TestMethod]
+        //public void SaveWarningTest()
+        //{
+        //    DALManagerSingleton.Instance.SaveWarning(_warning, 1, 10, "high temperature in bassin");
+        //}
 
         [TestMethod]
         public void SaveTriggerTest()
@@ -42,7 +48,7 @@ namespace EelData.Test
         [TestMethod]
         public void SaveTempsTest()
         {
-            DALManagerSingleton.Instance.SaveSensorData(_sensorData, 1);
+            DALManagerSingleton.Instance.SaveSensorData(_sensorData, 1, 24, 12, 13, 9);
         }
 
         [TestMethod]
