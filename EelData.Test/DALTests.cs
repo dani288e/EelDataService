@@ -42,19 +42,19 @@ namespace EelData.Test
         [TestMethod]
         public void SaveTriggerTest()
         {
-            DALManagerSingleton.Instance.SaveTrigger(_trigger, 1, 1);
+            DALManagerSingleton.Instance.SaveTrigger(_trigger);
         }
 
         [TestMethod]
         public void SaveTempsTest()
         {
-            DALManagerSingleton.Instance.SaveSensorData(_sensorData, 1, 24, 12, 13, 9);
+            DALManagerSingleton.Instance.SaveSensorData(_sensorData);
         }
 
         [TestMethod]
         public void SaveSensorTest()
         {
-            DALManagerSingleton.Instance.SaveSensor(_sensor, 1, "192.168.100.100");
+            DALManagerSingleton.Instance.SaveSensor(_sensor);
         }
 
         [TestMethod]
