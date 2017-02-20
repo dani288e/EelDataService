@@ -47,6 +47,10 @@
     <Compile Include="TextHandlerSingleton.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\EelData.DAL\EelData.DAL.csproj">
+      <Project>{a8dd3928-d03d-40c6-9e82-678f95fec70f}</Project>
+      <Name>EelData.DAL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\EelData.Logger\EelData.Logger.csproj">
       <Project>{02c2ce00-4c73-4a6a-8a6d-6624fcff0bf0}</Project>
       <Name>EelData.Logger</Name>

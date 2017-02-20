@@ -136,17 +136,6 @@ namespace EelData.DAL
                         LoggerSingleton.Instance.Log("An exception occurred when attempting to save sensordata to the database: ", ex);
                     }
                 }
-                else
-                {
-                    SensorData sensorDataE = new SensorData();
-                    sensorDataE.SensorID = record.SensorID;
-                    sensorDataE.AmbientTemperature = record.AmbientTemperature;
-                    sensorDataE.WaterLevel = record.WaterLevel;
-                    sensorDataE.WindSpeed = record.WindSpeed;
-                    sensorDataE.WaterTemperature = record.WaterTemperature;
-                    context.SensorDatas.Add(sensorDataE);
-                    context.SaveChanges();
-                }
             }
         }
 
@@ -175,23 +164,23 @@ namespace EelData.DAL
                         LoggerSingleton.Instance.Log("An exception occurred when attempting to save a new trigger to the database: ", ex);
                     }
                 }
-                else
-                {
-                    // TODO - test this
-                    Trigger triggerE = new Trigger();
-                    triggerE.DateTime = DateTime.Now;
-                    triggerE.WarningID = record.WarningID;
-                    triggerE.BassinID = record.BassinID;
-                    context.Triggers.Add(triggerE);
-                    try
-                    {
-                        context.SaveChanges();
-                    }
-                    catch (Exception ex)
-                    {
-                        LoggerSingleton.Instance.Log("An exception occurred when attempting to save a trigger to the database: ", ex);
-                    }
-                }
+                //else
+                //{
+                //    // TODO - test this
+                //    Trigger triggerE = new Trigger();
+                //    triggerE.DateTime = DateTime.Now;
+                //    triggerE.WarningID = record.WarningID;
+                //    triggerE.BassinID = record.BassinID;
+                //    context.Triggers.Add(triggerE);
+                //    try
+                //    {
+                //        context.SaveChanges();
+                //    }
+                //    catch (Exception ex)
+                //    {
+                //        LoggerSingleton.Instance.Log("An exception occurred when attempting to save a trigger to the database: ", ex);
+                //    }
+                //}
             }
         }
 

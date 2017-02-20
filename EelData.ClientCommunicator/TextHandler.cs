@@ -1,14 +1,16 @@
 ﻿using System.Net.Sockets;
 using EelData.Logger;
-using EelData.Model;
 using System.Text;
 using System;
+using EelData.DAL;
 
 namespace EelData.ClientCommunicator
 {
     public class TextHandler
     {
-        public void GetRequest(string text, Socket current, SensorData record)
+        private Model.SensorData _sensorData = new Model.SensorData();
+
+        public void GetRequest(string text, Socket current, Model.SensorData record)
         {
             // is the text contains these characters, the sensor on the device not attached, ignore it.
             if (!text.Contains("-999"))
@@ -23,7 +25,6 @@ namespace EelData.ClientCommunicator
                 record.SensorID = idToInt;
             }
             LoggerSingleton.Instance.Log("Text received: " + text);
-
             #region deprecated
             // client sends feed command
             //if (text.ToLower().Contains("feed"))
