@@ -8,7 +8,7 @@ namespace EelData.DAL
     {
         public void SaveSilo(Model.Silo record, int bassinid)
         {
-            using (EelDataEntities context = new EelDataEntities())
+            using (Ringsted1Entities111 context = new Ringsted1Entities111())
             {
                 Silo query = (from o in context.Silos
                                 where o.BassinID == record.BassinID
@@ -34,7 +34,7 @@ namespace EelData.DAL
 
         public void SaveBassin(Model.Bassin record, int hallid)
         {
-            using (EelDataEntities context = new EelDataEntities())
+            using (Ringsted1Entities111 context = new Ringsted1Entities111())
             {
                 Bassin query = (from o in context.Bassins
                                 where o.HallID == record.HallID
@@ -59,7 +59,7 @@ namespace EelData.DAL
 
         public void SaveHall(Model.Hall record)
         {
-            using (EelDataEntities context = new EelDataEntities())
+            using (Ringsted1Entities111 context = new Ringsted1Entities111())
             {
                 Hall query = (from o in context.Halls
                                  where o.Name == record.Name
@@ -86,7 +86,7 @@ namespace EelData.DAL
 
         public void SaveSensor(Model.Sensor record)
         {
-            using (EelDataEntities context = new EelDataEntities())
+            using (Ringsted1Entities111 context = new Ringsted1Entities111())
             {
                 Sensor query = (from o in context.Sensors
                                 where o.BassinID == record.BassinID
@@ -112,7 +112,7 @@ namespace EelData.DAL
 
         public void SaveSensorData(Model.SensorData record)
         {
-            using (EelDataEntities context = new EelDataEntities())
+            using (Ringsted1Entities111 context = new Ringsted1Entities111())
             {
                 SensorData query = (from o in context.SensorDatas
                                     where o.SensorID == record.SensorID
@@ -127,7 +127,14 @@ namespace EelData.DAL
                     sensorDataE.WindSpeed = record.WindSpeed;
                     sensorDataE.WaterTemperature = record.WaterTemperature;
                     context.SensorDatas.Add(sensorDataE);
-                    context.SaveChanges();
+                    try
+                    {
+                        context.SaveChanges();
+                    }
+                    catch (Exception ex)
+                    {
+                        LoggerSingleton.Instance.Log("An exception occurred when attempting to save sensordata to the database: ", ex);
+                    }
                 }
                 else
                 {
@@ -145,7 +152,7 @@ namespace EelData.DAL
 
         public void SaveTrigger(Model.Trigger record)
         {
-            using (EelDataEntities context = new EelDataEntities())
+            using (Ringsted1Entities111 context = new Ringsted1Entities111())
             {
                 Trigger query = (from o in context.Triggers
                                  where o.BassinID == record.BassinID
@@ -190,7 +197,7 @@ namespace EelData.DAL
 
         public void SaveWarning(Model.Warning record)
         {
-            using (EelDataEntities context = new EelDataEntities())
+            using (Ringsted1Entities111 context = new Ringsted1Entities111())
             {
                 Warning query = (from o in context.Warnings
                                  where o.ID == 1
@@ -216,7 +223,7 @@ namespace EelData.DAL
 
         //public void SaveWarning(Model.Warning record, int id, byte priority, string message)
         //{
-        //    using (EelDataEntities context = new EelDataEntities())
+        //    using (Ringsted1Entities11 context = new Ringsted1Entities11())
         //    {
         //        Warning query = (from o in context.Warnings
         //                         where o.ID == id

@@ -54,9 +54,11 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClientCommunicationTests.cs" />
+    <Compile Include="ConnectionStringTest.cs" />
     <Compile Include="DALTests.cs" />
     <Compile Include="LoggerTests.cs" />
     <Compile Include="NetworkingTests.cs" />

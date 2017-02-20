@@ -51,70 +51,58 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bassin.cs">
-      <DependentUpon>EelDataEntities.tt</DependentUpon>
+      <DependentUpon>Ringsted1Entities.tt</DependentUpon>
     </Compile>
     <Compile Include="DALManager.cs" />
     <Compile Include="DALManagerSingleton.cs" />
-    <Compile Include="EelDataEntities.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>EelDataEntities.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EelDataEntities.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>EelDataEntities.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EelDataEntities.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>EelDataEntities.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Hall.cs">
-      <DependentUpon>EelDataEntities.tt</DependentUpon>
+      <DependentUpon>Ringsted1Entities.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Ringsted1Entities.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Ringsted1Entities.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Ringsted1Entities.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Ringsted1Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Ringsted1Entities.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Ringsted1Entities.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Sensor.cs">
-      <DependentUpon>EelDataEntities.tt</DependentUpon>
+      <DependentUpon>Ringsted1Entities.tt</DependentUpon>
     </Compile>
     <Compile Include="SensorData.cs">
-      <DependentUpon>EelDataEntities.tt</DependentUpon>
+      <DependentUpon>Ringsted1Entities.tt</DependentUpon>
     </Compile>
     <Compile Include="Silo.cs">
-      <DependentUpon>EelDataEntities.tt</DependentUpon>
+      <DependentUpon>Ringsted1Entities.tt</DependentUpon>
     </Compile>
     <Compile Include="sysdiagram.cs">
-      <DependentUpon>EelDataEntities.tt</DependentUpon>
+      <DependentUpon>Ringsted1Entities.tt</DependentUpon>
     </Compile>
     <Compile Include="Trigger.cs">
-      <DependentUpon>EelDataEntities.tt</DependentUpon>
+      <DependentUpon>Ringsted1Entities.tt</DependentUpon>
     </Compile>
     <Compile Include="Warning.cs">
-      <DependentUpon>EelDataEntities.tt</DependentUpon>
+      <DependentUpon>Ringsted1Entities.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <EntityDeploy Include="EelDataEntities.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>EelDataEntities.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="EelDataEntities.edmx.diagram">
-      <DependentUpon>EelDataEntities.edmx</DependentUpon>
-    </None>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="EelDataEntities.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>EelDataEntities.edmx</DependentUpon>
-      <LastGenOutput>EelDataEntities.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="EelDataEntities.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>EelDataEntities.edmx</DependentUpon>
-      <LastGenOutput>EelDataEntities.cs</LastGenOutput>
-    </Content>
+    <EntityDeploy Include="Ringsted1Entities.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Ringsted1Entities.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Ringsted1Entities.edmx.diagram">
+      <DependentUpon>Ringsted1Entities.edmx</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -128,6 +116,18 @@
       <Project>{8499785e-c88e-493a-b2f9-482211dd7f26}</Project>
       <Name>EelData.Model</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Ringsted1Entities.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Ringsted1Entities.edmx</DependentUpon>
+      <LastGenOutput>Ringsted1Entities.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Ringsted1Entities.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Ringsted1Entities.edmx</DependentUpon>
+      <LastGenOutput>Ringsted1Entities.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

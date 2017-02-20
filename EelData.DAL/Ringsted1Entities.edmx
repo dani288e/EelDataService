@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="Ringsted1Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Ringsted1Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Bassin">
           <Key>
             <PropertyRef Name="ID" />
@@ -193,10 +193,11 @@ warning 6002: The table/view 'Ringsted1.dbo.Trigger' does not have a primary key
             <End Role="Trigger" EntitySet="Trigger" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="EelDataEntitiesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="Ringsted1Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Bassin">
           <Key>
             <PropertyRef Name="ID" />
@@ -213,8 +214,8 @@ warning 6002: The table/view 'Ringsted1.dbo.Trigger' does not have a primary key
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <NavigationProperty Name="Bassins" Relationship="Self.FK_Bassin_Hall" FromRole="Hall" ToRole="Bassin" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Bassins" Relationship="Self.FK_Bassin_Hall" FromRole="Hall" ToRole="Bassin" />
         </EntityType>
         <EntityType Name="Sensor">
           <Key>
@@ -230,21 +231,13 @@ warning 6002: The table/view 'Ringsted1.dbo.Trigger' does not have a primary key
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="SensorID" Nullable="false" Type="Int32" />
+          <Property Name="SensorID" Type="Int32" Nullable="false" />
           <Property Name="AmbientTemperature" Type="Byte" />
           <Property Name="WaterLevel" Type="Byte" />
           <Property Name="WindSpeed" Type="Byte" />
           <Property Name="WaterTemperature" Type="Byte" />
-          <NavigationProperty Name="Sensor" Relationship="Self.FK_SensorData_Sensor" FromRole="SensorData" ToRole="Sensor" />
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-        </EntityType>
-        <EntityType Name="Silo">
-          <Key>
-            <PropertyRef Name="BassinID" />
-          </Key>
-          <Property Name="BassinID" Type="Int32" Nullable="false" />
-          <Property Name="FoodAmount" Type="Int32" />
-          <NavigationProperty Name="Bassin" Relationship="Self.FK_Silo_Bassin" FromRole="Silo" ToRole="Bassin" />
+          <NavigationProperty Name="Sensor" Relationship="Self.FK_SensorData_Sensor" FromRole="SensorData" ToRole="Sensor" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
@@ -256,6 +249,23 @@ warning 6002: The table/view 'Ringsted1.dbo.Trigger' does not have a primary key
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
+        <EntityType Name="Warning">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Priority" Type="Byte" />
+          <Property Name="Message" Type="String" MaxLength="140" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Triggers" Relationship="Self.FK_Trigger_Warning" FromRole="Warning" ToRole="Trigger" />
+        </EntityType>
+        <EntityType Name="Silo">
+          <Key>
+            <PropertyRef Name="BassinID" />
+          </Key>
+          <Property Name="BassinID" Type="Int32" Nullable="false" />
+          <Property Name="FoodAmount" Type="Int32" />
+          <NavigationProperty Name="Bassin" Relationship="Self.FK_Silo_Bassin" FromRole="Silo" ToRole="Bassin" />
+        </EntityType>
         <EntityType Name="Trigger">
           <Key>
             <PropertyRef Name="BassinID" />
@@ -266,15 +276,6 @@ warning 6002: The table/view 'Ringsted1.dbo.Trigger' does not have a primary key
           <Property Name="DateTime" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Bassin" Relationship="Self.FK_Trigger_Bassin" FromRole="Trigger" ToRole="Bassin" />
           <NavigationProperty Name="Warning" Relationship="Self.FK_Trigger_Warning" FromRole="Trigger" ToRole="Warning" />
-        </EntityType>
-        <EntityType Name="Warning">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Priority" Type="Byte" />
-          <Property Name="Message" Type="String" MaxLength="140" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Triggers" Relationship="Self.FK_Trigger_Warning" FromRole="Warning" ToRole="Trigger" />
         </EntityType>
         <Association Name="FK_Bassin_Hall">
           <End Role="Hall" Type="Self.Hall" Multiplicity="1" />
@@ -348,15 +349,15 @@ warning 6002: The table/view 'Ringsted1.dbo.Trigger' does not have a primary key
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="EelDataEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="Ringsted1Entities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Bassins" EntityType="Self.Bassin" />
           <EntitySet Name="Halls" EntityType="Self.Hall" />
           <EntitySet Name="Sensors" EntityType="Self.Sensor" />
           <EntitySet Name="SensorDatas" EntityType="Self.SensorData" />
-          <EntitySet Name="Silos" EntityType="Self.Silo" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
-          <EntitySet Name="Triggers" EntityType="Self.Trigger" />
           <EntitySet Name="Warnings" EntityType="Self.Warning" />
+          <EntitySet Name="Silos" EntityType="Self.Silo" />
+          <EntitySet Name="Triggers" EntityType="Self.Trigger" />
           <AssociationSet Name="FK_Bassin_Hall" Association="Self.FK_Bassin_Hall">
             <End Role="Hall" EntitySet="Halls" />
             <End Role="Bassin" EntitySet="Bassins" />
@@ -387,9 +388,9 @@ warning 6002: The table/view 'Ringsted1.dbo.Trigger' does not have a primary key
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Ringsted1ModelStoreContainer" CdmEntityContainer="EelDataEntities">
+        <EntityContainerMapping StorageEntityContainer="Ringsted1ModelStoreContainer" CdmEntityContainer="Ringsted1Entities1">
           <EntitySetMapping Name="Bassins">
-            <EntityTypeMapping TypeName="EelDataEntitiesModel.Bassin">
+            <EntityTypeMapping TypeName="Ringsted1Model.Bassin">
               <MappingFragment StoreEntitySet="Bassin">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="HallID" ColumnName="HallID" />
@@ -397,15 +398,15 @@ warning 6002: The table/view 'Ringsted1.dbo.Trigger' does not have a primary key
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Halls">
-            <EntityTypeMapping TypeName="EelDataEntitiesModel.Hall">
+            <EntityTypeMapping TypeName="Ringsted1Model.Hall">
               <MappingFragment StoreEntitySet="Hall">
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Sensors">
-            <EntityTypeMapping TypeName="EelDataEntitiesModel.Sensor">
+            <EntityTypeMapping TypeName="Ringsted1Model.Sensor">
               <MappingFragment StoreEntitySet="Sensor">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="BassinID" ColumnName="BassinID" />
@@ -414,27 +415,19 @@ warning 6002: The table/view 'Ringsted1.dbo.Trigger' does not have a primary key
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="SensorDatas">
-            <EntityTypeMapping TypeName="EelDataEntitiesModel.SensorData">
+            <EntityTypeMapping TypeName="Ringsted1Model.SensorData">
               <MappingFragment StoreEntitySet="SensorData">
-                <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="SensorID" ColumnName="SensorID" />
                 <ScalarProperty Name="AmbientTemperature" ColumnName="AmbientTemperature" />
                 <ScalarProperty Name="WaterLevel" ColumnName="WaterLevel" />
                 <ScalarProperty Name="WindSpeed" ColumnName="WindSpeed" />
                 <ScalarProperty Name="WaterTemperature" ColumnName="WaterTemperature" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Silos">
-            <EntityTypeMapping TypeName="EelDataEntitiesModel.Silo">
-              <MappingFragment StoreEntitySet="Silo">
-                <ScalarProperty Name="BassinID" ColumnName="BassinID" />
-                <ScalarProperty Name="FoodAmount" ColumnName="FoodAmount" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="EelDataEntitiesModel.sysdiagram">
+            <EntityTypeMapping TypeName="Ringsted1Model.sysdiagram">
               <MappingFragment StoreEntitySet="sysdiagrams">
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="principal_id" ColumnName="principal_id" />
@@ -444,21 +437,29 @@ warning 6002: The table/view 'Ringsted1.dbo.Trigger' does not have a primary key
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Triggers">
-            <EntityTypeMapping TypeName="EelDataEntitiesModel.Trigger">
-              <MappingFragment StoreEntitySet="Trigger">
-                <ScalarProperty Name="BassinID" ColumnName="BassinID" />
-                <ScalarProperty Name="WarningID" ColumnName="WarningID" />
-                <ScalarProperty Name="DateTime" ColumnName="DateTime" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Warnings">
-            <EntityTypeMapping TypeName="EelDataEntitiesModel.Warning">
+            <EntityTypeMapping TypeName="Ringsted1Model.Warning">
               <MappingFragment StoreEntitySet="Warning">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Priority" ColumnName="Priority" />
                 <ScalarProperty Name="Message" ColumnName="Message" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Silos">
+            <EntityTypeMapping TypeName="Ringsted1Model.Silo">
+              <MappingFragment StoreEntitySet="Silo">
+                <ScalarProperty Name="BassinID" ColumnName="BassinID" />
+                <ScalarProperty Name="FoodAmount" ColumnName="FoodAmount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Triggers">
+            <EntityTypeMapping TypeName="Ringsted1Model.Trigger">
+              <MappingFragment StoreEntitySet="Trigger">
+                <ScalarProperty Name="BassinID" ColumnName="BassinID" />
+                <ScalarProperty Name="WarningID" ColumnName="WarningID" />
+                <ScalarProperty Name="DateTime" ColumnName="DateTime" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

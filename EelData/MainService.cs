@@ -46,6 +46,7 @@ namespace EelData
 
         private void DataLoggerTimer_Elapsed(object sender, ElapsedEventArgs e)
         {
+            Debugger.Launch();
             DALManagerSingleton.Instance.SaveSensorData(_sensorData);
         }
     }

@@ -151,7 +151,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="Ringsted1Entities" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="Ringsted1Entities1" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Bassins" EntityType="Self.Bassin" />
     <EntitySet Name="Halls" EntityType="Self.Hall" />
     <EntitySet Name="Sensors" EntityType="Self.Sensor" />

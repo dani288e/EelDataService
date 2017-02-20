@@ -19,6 +19,7 @@ namespace EelData.DAL
         public Nullable<byte> WaterLevel { get; set; }
         public Nullable<byte> WindSpeed { get; set; }
         public Nullable<byte> WaterTemperature { get; set; }
+        public int ID { get; set; }
     
         public virtual Sensor Sensor { get; set; }
     }

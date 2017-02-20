@@ -14,11 +14,18 @@ namespace EelData.DAL
     
     public partial class Sensor
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Sensor()
+        {
+            this.SensorDatas = new HashSet<SensorData>();
+        }
+    
         public int ID { get; set; }
         public int BassinID { get; set; }
         public string IPAddress { get; set; }
     
         public virtual Bassin Bassin { get; set; }
-        public virtual SensorData SensorData { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SensorData> SensorDatas { get; set; }
     }
 }

@@ -10,17 +10,21 @@ namespace EelData.ClientCommunicator
     {
         public void GetRequest(string text, Socket current, SensorData record)
         {
+            // is the text contains these characters, the sensor on the device not attached, ignore it.
+            if (!text.Contains("-999"))
+            {
+                string id = text.Substring(0, 1);
+                string seperator = text.Substring(1, 1);
+                string temp = text.Substring(2, 2);
+                byte tempInBytes = Byte.Parse(temp);
+                int idToInt = int.Parse(id);
+
+                record.AmbientTemperature = tempInBytes;
+                record.SensorID = idToInt;
+            }
             LoggerSingleton.Instance.Log("Text received: " + text);
 
-            string id = text.Substring(0, 1);
-            string seperator = text.Substring(1, 1);
-            string temp = text.Substring(2, 2);
-            byte tempInBytes = Byte.Parse(temp);
-            int idToInt = int.Parse(id);
-
-            record.AmbientTemperature = tempInBytes;
-            record.SensorID = idToInt;
-
+            #region deprecated
             // client sends feed command
             //if (text.ToLower().Contains("feed"))
             //{
@@ -42,6 +46,7 @@ namespace EelData.ClientCommunicator
             ////    current.Send(data);
             ////    LoggerSingleton.Instance.Log("The client sent an invalid request, warning sent");
             ////}
+            #endregion deprecated
         }
 
         public void SendAck(Socket current)
