@@ -51,6 +51,10 @@
       <Project>{02c2ce00-4c73-4a6a-8a6d-6624fcff0bf0}</Project>
       <Name>EelData.Logger</Name>
     </ProjectReference>
+    <ProjectReference Include="..\EelData.Model\EelData.Model.csproj">
+      <Project>{8499785e-c88e-493a-b2f9-482211dd7f26}</Project>
+      <Name>EelData.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

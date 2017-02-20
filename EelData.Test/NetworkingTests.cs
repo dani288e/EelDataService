@@ -7,9 +7,9 @@ using System.Text;
 namespace EelData.Test
 {
     [TestClass]
-    public class SocketServerTests
+    public class NetworkingTests
     {
-        public SocketServerTests()
+        public NetworkingTests()
         {
             SocketServerSingleton.Instance.SetupServer();
         }

@@ -70,9 +70,17 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\EelData.DAL\EelData.DAL.csproj">
+      <Project>{a8dd3928-d03d-40c6-9e82-678f95fec70f}</Project>
+      <Name>EelData.DAL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\EelData.Logger\EelData.Logger.csproj">
       <Project>{02c2ce00-4c73-4a6a-8a6d-6624fcff0bf0}</Project>
       <Name>EelData.Logger</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EelData.Model\EelData.Model.csproj">
+      <Project>{8499785e-c88e-493a-b2f9-482211dd7f26}</Project>
+      <Name>EelData.Model</Name>
     </ProjectReference>
     <ProjectReference Include="..\EelData.Networking\EelData.Networking.csproj">
       <Project>{a31822c4-b8ec-47c3-a067-021a3ad0d6b1}</Project>

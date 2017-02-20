@@ -59,7 +59,7 @@
     <Compile Include="ClientCommunicationTests.cs" />
     <Compile Include="DALTests.cs" />
     <Compile Include="LoggerTests.cs" />
-    <Compile Include="SocketServerTests.cs" />
+    <Compile Include="NetworkingTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

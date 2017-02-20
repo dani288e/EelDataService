@@ -6,6 +6,8 @@ using System.Text;
 using EelData.Logger;
 using EelData.ClientCommunicator;
 using System.Configuration;
+using System.Diagnostics;
+using EelData.Model;
 
 namespace EelData.Networking
 {
@@ -17,6 +19,7 @@ namespace EelData.Networking
         private readonly byte[] _buffer = new byte[_bufferSize];
         private const int _bufferSize = 2048;
         private readonly int _port = Int32.Parse(ConfigurationManager.AppSettings["Port"]);
+        private SensorData _sensorData;
         #endregion
 
         public void SetupServer()
@@ -25,6 +28,7 @@ namespace EelData.Networking
 
             try
             {
+                _sensorData = new SensorData();
                 _serverSocket.Bind(new IPEndPoint(IPAddress.Any, _port));
                 // place the socket in a listen state. Max queue of 5 connections at a time
                 _serverSocket.Listen(5);
@@ -108,7 +112,7 @@ namespace EelData.Networking
                 Socket clientSocket = _clientSockets.Find(x => x.RemoteEndPoint.ToString() == IP.ToString());
                 if (command != null)
                 {
-                    TextHandlerSingleton.Instance.GetRequest(command, current);
+                    TextHandlerSingleton.Instance.GetRequest(command, current, _sensorData);
                 }
             }
             catch (Exception ex)
@@ -143,10 +147,9 @@ namespace EelData.Networking
             byte[] receivedBuffer = new byte[received];
             Array.Copy(_buffer, receivedBuffer, received);
             string text = Encoding.ASCII.GetString(receivedBuffer);
-            LoggerSingleton.Instance.Log("Text received: " + text);
 
             // handle the text sent from the connecting device
-            TextHandlerSingleton.Instance.GetRequest(text, current);
+            TextHandlerSingleton.Instance.GetRequest(text, current, _sensorData);
 
             // send ack to connected device
             TextHandlerSingleton.Instance.SendAck(current);

@@ -1,0 +1,191 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Ringsted1Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Bassin">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HallID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Hall">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Sensor">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BassinID" Type="int" Nullable="false" />
+    <Property Name="IPAddress" Type="varchar" MaxLength="15" />
+  </EntityType>
+  <EntityType Name="SensorData">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="SensorID" Type="int" Nullable="false" />
+    <Property Name="AmbientTemperature" Type="tinyint" />
+    <Property Name="WaterLevel" Type="tinyint" />
+    <Property Name="WindSpeed" Type="tinyint" />
+    <Property Name="WaterTemperature" Type="tinyint" />
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'Ringsted1.dbo.Silo' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Silo">
+    <Key>
+      <PropertyRef Name="BassinID" />
+    </Key>
+    <Property Name="BassinID" Type="int" Nullable="false" />
+    <Property Name="FoodAmount" Type="int" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'Ringsted1.dbo.Trigger' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Trigger">
+    <Key>
+      <PropertyRef Name="BassinID" />
+      <PropertyRef Name="WarningID" />
+    </Key>
+    <Property Name="BassinID" Type="int" Nullable="false" />
+    <Property Name="WarningID" Type="int" Nullable="false" />
+    <Property Name="DateTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Warning">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Priority" Type="tinyint" />
+    <Property Name="Message" Type="varchar" MaxLength="140" />
+  </EntityType>
+  <Association Name="FK_Bassin_Hall">
+    <End Role="Hall" Type="Self.Hall" Multiplicity="1" />
+    <End Role="Bassin" Type="Self.Bassin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hall">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Bassin">
+        <PropertyRef Name="HallID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sensor_Bassin">
+    <End Role="Bassin" Type="Self.Bassin" Multiplicity="1" />
+    <End Role="Sensor" Type="Self.Sensor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Bassin">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Sensor">
+        <PropertyRef Name="BassinID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SensorData_Sensor">
+    <End Role="Sensor" Type="Self.Sensor" Multiplicity="1" />
+    <End Role="SensorData" Type="Self.SensorData" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sensor">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SensorData">
+        <PropertyRef Name="SensorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Silo_Bassin">
+    <End Role="Bassin" Type="Self.Bassin" Multiplicity="1" />
+    <End Role="Silo" Type="Self.Silo" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Bassin">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Silo">
+        <PropertyRef Name="BassinID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Trigger_Bassin">
+    <End Role="Bassin" Type="Self.Bassin" Multiplicity="1" />
+    <End Role="Trigger" Type="Self.Trigger" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Bassin">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Trigger">
+        <PropertyRef Name="BassinID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Trigger_Warning">
+    <End Role="Warning" Type="Self.Warning" Multiplicity="1" />
+    <End Role="Trigger" Type="Self.Trigger" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Warning">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Trigger">
+        <PropertyRef Name="WarningID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Ringsted1ModelStoreContainer">
+    <EntitySet Name="Bassin" EntityType="Self.Bassin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Hall" EntityType="Self.Hall" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Sensor" EntityType="Self.Sensor" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SensorData" EntityType="Self.SensorData" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Warning" EntityType="Self.Warning" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Silo" EntityType="Self.Silo" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Silo].[BassinID] AS [BassinID], 
+    [Silo].[FoodAmount] AS [FoodAmount]
+    FROM [dbo].[Silo] AS [Silo]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Trigger" EntityType="Self.Trigger" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Trigger].[BassinID] AS [BassinID], 
+    [Trigger].[WarningID] AS [WarningID], 
+    [Trigger].[DateTime] AS [DateTime]
+    FROM [dbo].[Trigger] AS [Trigger]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_Bassin_Hall" Association="Self.FK_Bassin_Hall">
+      <End Role="Hall" EntitySet="Hall" />
+      <End Role="Bassin" EntitySet="Bassin" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sensor_Bassin" Association="Self.FK_Sensor_Bassin">
+      <End Role="Bassin" EntitySet="Bassin" />
+      <End Role="Sensor" EntitySet="Sensor" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SensorData_Sensor" Association="Self.FK_SensorData_Sensor">
+      <End Role="Sensor" EntitySet="Sensor" />
+      <End Role="SensorData" EntitySet="SensorData" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Silo_Bassin" Association="Self.FK_Silo_Bassin">
+      <End Role="Bassin" EntitySet="Bassin" />
+      <End Role="Silo" EntitySet="Silo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Trigger_Bassin" Association="Self.FK_Trigger_Bassin">
+      <End Role="Bassin" EntitySet="Bassin" />
+      <End Role="Trigger" EntitySet="Trigger" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Trigger_Warning" Association="Self.FK_Trigger_Warning">
+      <End Role="Warning" EntitySet="Warning" />
+      <End Role="Trigger" EntitySet="Trigger" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

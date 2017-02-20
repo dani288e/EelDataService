@@ -118,7 +118,18 @@ namespace EelData.DAL
                                     where o.SensorID == record.SensorID
                                     select o).FirstOrDefault();
 
-                if (query == null)
+                if (query != null)
+                {
+                    SensorData sensorDataE = new SensorData();
+                    sensorDataE.SensorID = record.SensorID;
+                    sensorDataE.AmbientTemperature = record.AmbientTemperature;
+                    sensorDataE.WaterLevel = record.WaterLevel;
+                    sensorDataE.WindSpeed = record.WindSpeed;
+                    sensorDataE.WaterTemperature = record.WaterTemperature;
+                    context.SensorDatas.Add(sensorDataE);
+                    context.SaveChanges();
+                }
+                else
                 {
                     SensorData sensorDataE = new SensorData();
                     sensorDataE.SensorID = record.SensorID;

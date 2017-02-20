@@ -29,14 +29,17 @@
         </EntityType>
         <EntityType Name="SensorData">
           <Key>
-            <PropertyRef Name="SensorID" />
+            <PropertyRef Name="ID" />
           </Key>
           <Property Name="SensorID" Type="int" Nullable="false" />
           <Property Name="AmbientTemperature" Type="tinyint" />
           <Property Name="WaterLevel" Type="tinyint" />
           <Property Name="WindSpeed" Type="tinyint" />
           <Property Name="WaterTemperature" Type="tinyint" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Ringsted1.dbo.Silo' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Silo">
           <Key>
             <PropertyRef Name="BassinID" />
@@ -99,7 +102,7 @@ warning 6002: The table/view 'Ringsted1.dbo.Trigger' does not have a primary key
         </Association>
         <Association Name="FK_SensorData_Sensor">
           <End Role="Sensor" Type="Self.Sensor" Multiplicity="1" />
-          <End Role="SensorData" Type="Self.SensorData" Multiplicity="0..1" />
+          <End Role="SensorData" Type="Self.SensorData" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Sensor">
               <PropertyRef Name="ID" />
@@ -150,9 +153,14 @@ warning 6002: The table/view 'Ringsted1.dbo.Trigger' does not have a primary key
           <EntitySet Name="Hall" EntityType="Self.Hall" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sensor" EntityType="Self.Sensor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SensorData" EntityType="Self.SensorData" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Silo" EntityType="Self.Silo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Warning" EntityType="Self.Warning" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Silo" EntityType="Self.Silo" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Silo].[BassinID] AS [BassinID], 
+    [Silo].[FoodAmount] AS [FoodAmount]
+    FROM [dbo].[Silo] AS [Silo]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="Trigger" EntityType="Self.Trigger" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [Trigger].[BassinID] AS [BassinID], 
@@ -188,7 +196,7 @@ warning 6002: The table/view 'Ringsted1.dbo.Trigger' does not have a primary key
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="Ringsted1Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="EelDataEntitiesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Bassin">
           <Key>
             <PropertyRef Name="ID" />
@@ -216,18 +224,19 @@ warning 6002: The table/view 'Ringsted1.dbo.Trigger' does not have a primary key
           <Property Name="BassinID" Type="Int32" Nullable="false" />
           <Property Name="IPAddress" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Bassin" Relationship="Self.FK_Sensor_Bassin" FromRole="Sensor" ToRole="Bassin" />
-          <NavigationProperty Name="SensorData" Relationship="Self.FK_SensorData_Sensor" FromRole="Sensor" ToRole="SensorData" />
+          <NavigationProperty Name="SensorDatas" Relationship="Self.FK_SensorData_Sensor" FromRole="Sensor" ToRole="SensorData" />
         </EntityType>
         <EntityType Name="SensorData">
           <Key>
-            <PropertyRef Name="SensorID" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="SensorID" Type="Int32" Nullable="false" />
+          <Property Name="SensorID" Nullable="false" Type="Int32" />
           <Property Name="AmbientTemperature" Type="Byte" />
           <Property Name="WaterLevel" Type="Byte" />
           <Property Name="WindSpeed" Type="Byte" />
           <Property Name="WaterTemperature" Type="Byte" />
           <NavigationProperty Name="Sensor" Relationship="Self.FK_SensorData_Sensor" FromRole="SensorData" ToRole="Sensor" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
         </EntityType>
         <EntityType Name="Silo">
           <Key>
@@ -317,7 +326,7 @@ warning 6002: The table/view 'Ringsted1.dbo.Trigger' does not have a primary key
         </Association>
         <Association Name="FK_SensorData_Sensor">
           <End Role="Sensor" Type="Self.Sensor" Multiplicity="1" />
-          <End Role="SensorData" Type="Self.SensorData" Multiplicity="0..1" />
+          <End Role="SensorData" Type="Self.SensorData" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Sensor">
               <PropertyRef Name="ID" />
@@ -339,7 +348,7 @@ warning 6002: The table/view 'Ringsted1.dbo.Trigger' does not have a primary key
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="Ringsted1EntitiesLocal" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="EelDataEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Bassins" EntityType="Self.Bassin" />
           <EntitySet Name="Halls" EntityType="Self.Hall" />
           <EntitySet Name="Sensors" EntityType="Self.Sensor" />
@@ -378,9 +387,9 @@ warning 6002: The table/view 'Ringsted1.dbo.Trigger' does not have a primary key
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Ringsted1ModelStoreContainer" CdmEntityContainer="Ringsted1EntitiesLocal">
+        <EntityContainerMapping StorageEntityContainer="Ringsted1ModelStoreContainer" CdmEntityContainer="EelDataEntities">
           <EntitySetMapping Name="Bassins">
-            <EntityTypeMapping TypeName="Ringsted1Model.Bassin">
+            <EntityTypeMapping TypeName="EelDataEntitiesModel.Bassin">
               <MappingFragment StoreEntitySet="Bassin">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="HallID" ColumnName="HallID" />
@@ -388,7 +397,7 @@ warning 6002: The table/view 'Ringsted1.dbo.Trigger' does not have a primary key
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Halls">
-            <EntityTypeMapping TypeName="Ringsted1Model.Hall">
+            <EntityTypeMapping TypeName="EelDataEntitiesModel.Hall">
               <MappingFragment StoreEntitySet="Hall">
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
@@ -396,7 +405,7 @@ warning 6002: The table/view 'Ringsted1.dbo.Trigger' does not have a primary key
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Sensors">
-            <EntityTypeMapping TypeName="Ringsted1Model.Sensor">
+            <EntityTypeMapping TypeName="EelDataEntitiesModel.Sensor">
               <MappingFragment StoreEntitySet="Sensor">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="BassinID" ColumnName="BassinID" />
@@ -405,8 +414,9 @@ warning 6002: The table/view 'Ringsted1.dbo.Trigger' does not have a primary key
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="SensorDatas">
-            <EntityTypeMapping TypeName="Ringsted1Model.SensorData">
+            <EntityTypeMapping TypeName="EelDataEntitiesModel.SensorData">
               <MappingFragment StoreEntitySet="SensorData">
+                <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="SensorID" ColumnName="SensorID" />
                 <ScalarProperty Name="AmbientTemperature" ColumnName="AmbientTemperature" />
                 <ScalarProperty Name="WaterLevel" ColumnName="WaterLevel" />
@@ -416,7 +426,7 @@ warning 6002: The table/view 'Ringsted1.dbo.Trigger' does not have a primary key
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Silos">
-            <EntityTypeMapping TypeName="Ringsted1Model.Silo">
+            <EntityTypeMapping TypeName="EelDataEntitiesModel.Silo">
               <MappingFragment StoreEntitySet="Silo">
                 <ScalarProperty Name="BassinID" ColumnName="BassinID" />
                 <ScalarProperty Name="FoodAmount" ColumnName="FoodAmount" />
@@ -424,7 +434,7 @@ warning 6002: The table/view 'Ringsted1.dbo.Trigger' does not have a primary key
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="Ringsted1Model.sysdiagram">
+            <EntityTypeMapping TypeName="EelDataEntitiesModel.sysdiagram">
               <MappingFragment StoreEntitySet="sysdiagrams">
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="principal_id" ColumnName="principal_id" />
@@ -435,7 +445,7 @@ warning 6002: The table/view 'Ringsted1.dbo.Trigger' does not have a primary key
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Triggers">
-            <EntityTypeMapping TypeName="Ringsted1Model.Trigger">
+            <EntityTypeMapping TypeName="EelDataEntitiesModel.Trigger">
               <MappingFragment StoreEntitySet="Trigger">
                 <ScalarProperty Name="BassinID" ColumnName="BassinID" />
                 <ScalarProperty Name="WarningID" ColumnName="WarningID" />
@@ -444,7 +454,7 @@ warning 6002: The table/view 'Ringsted1.dbo.Trigger' does not have a primary key
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Warnings">
-            <EntityTypeMapping TypeName="Ringsted1Model.Warning">
+            <EntityTypeMapping TypeName="EelDataEntitiesModel.Warning">
               <MappingFragment StoreEntitySet="Warning">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Priority" ColumnName="Priority" />

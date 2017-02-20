@@ -1,0 +1,188 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EelDataEntitiesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Bassin">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="HallID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Hall" Relationship="Self.FK_Bassin_Hall" FromRole="Bassin" ToRole="Hall" />
+    <NavigationProperty Name="Sensors" Relationship="Self.FK_Sensor_Bassin" FromRole="Bassin" ToRole="Sensor" />
+    <NavigationProperty Name="Silo" Relationship="Self.FK_Silo_Bassin" FromRole="Bassin" ToRole="Silo" />
+    <NavigationProperty Name="Triggers" Relationship="Self.FK_Trigger_Bassin" FromRole="Bassin" ToRole="Trigger" />
+  </EntityType>
+  <EntityType Name="Hall">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="Bassins" Relationship="Self.FK_Bassin_Hall" FromRole="Hall" ToRole="Bassin" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Sensor">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BassinID" Type="Int32" Nullable="false" />
+    <Property Name="IPAddress" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Bassin" Relationship="Self.FK_Sensor_Bassin" FromRole="Sensor" ToRole="Bassin" />
+    <NavigationProperty Name="SensorDatas" Relationship="Self.FK_SensorData_Sensor" FromRole="Sensor" ToRole="SensorData" />
+  </EntityType>
+  <EntityType Name="SensorData">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="SensorID" Nullable="false" Type="Int32" />
+    <Property Name="AmbientTemperature" Type="Byte" />
+    <Property Name="WaterLevel" Type="Byte" />
+    <Property Name="WindSpeed" Type="Byte" />
+    <Property Name="WaterTemperature" Type="Byte" />
+    <NavigationProperty Name="Sensor" Relationship="Self.FK_SensorData_Sensor" FromRole="SensorData" ToRole="Sensor" />
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="Silo">
+    <Key>
+      <PropertyRef Name="BassinID" />
+    </Key>
+    <Property Name="BassinID" Type="Int32" Nullable="false" />
+    <Property Name="FoodAmount" Type="Int32" />
+    <NavigationProperty Name="Bassin" Relationship="Self.FK_Silo_Bassin" FromRole="Silo" ToRole="Bassin" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Trigger">
+    <Key>
+      <PropertyRef Name="BassinID" />
+      <PropertyRef Name="WarningID" />
+    </Key>
+    <Property Name="BassinID" Type="Int32" Nullable="false" />
+    <Property Name="WarningID" Type="Int32" Nullable="false" />
+    <Property Name="DateTime" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Bassin" Relationship="Self.FK_Trigger_Bassin" FromRole="Trigger" ToRole="Bassin" />
+    <NavigationProperty Name="Warning" Relationship="Self.FK_Trigger_Warning" FromRole="Trigger" ToRole="Warning" />
+  </EntityType>
+  <EntityType Name="Warning">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Priority" Type="Byte" />
+    <Property Name="Message" Type="String" MaxLength="140" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Triggers" Relationship="Self.FK_Trigger_Warning" FromRole="Warning" ToRole="Trigger" />
+  </EntityType>
+  <Association Name="FK_Bassin_Hall">
+    <End Role="Hall" Type="Self.Hall" Multiplicity="1" />
+    <End Role="Bassin" Type="Self.Bassin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hall">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Bassin">
+        <PropertyRef Name="HallID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sensor_Bassin">
+    <End Role="Bassin" Type="Self.Bassin" Multiplicity="1" />
+    <End Role="Sensor" Type="Self.Sensor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Bassin">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Sensor">
+        <PropertyRef Name="BassinID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Silo_Bassin">
+    <End Role="Bassin" Type="Self.Bassin" Multiplicity="1" />
+    <End Role="Silo" Type="Self.Silo" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Bassin">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Silo">
+        <PropertyRef Name="BassinID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Trigger_Bassin">
+    <End Role="Bassin" Type="Self.Bassin" Multiplicity="1" />
+    <End Role="Trigger" Type="Self.Trigger" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Bassin">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Trigger">
+        <PropertyRef Name="BassinID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SensorData_Sensor">
+    <End Role="Sensor" Type="Self.Sensor" Multiplicity="1" />
+    <End Role="SensorData" Type="Self.SensorData" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sensor">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SensorData">
+        <PropertyRef Name="SensorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Trigger_Warning">
+    <End Role="Warning" Type="Self.Warning" Multiplicity="1" />
+    <End Role="Trigger" Type="Self.Trigger" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Warning">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Trigger">
+        <PropertyRef Name="WarningID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="EelDataEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Bassins" EntityType="Self.Bassin" />
+    <EntitySet Name="Halls" EntityType="Self.Hall" />
+    <EntitySet Name="Sensors" EntityType="Self.Sensor" />
+    <EntitySet Name="SensorDatas" EntityType="Self.SensorData" />
+    <EntitySet Name="Silos" EntityType="Self.Silo" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="Triggers" EntityType="Self.Trigger" />
+    <EntitySet Name="Warnings" EntityType="Self.Warning" />
+    <AssociationSet Name="FK_Bassin_Hall" Association="Self.FK_Bassin_Hall">
+      <End Role="Hall" EntitySet="Halls" />
+      <End Role="Bassin" EntitySet="Bassins" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sensor_Bassin" Association="Self.FK_Sensor_Bassin">
+      <End Role="Bassin" EntitySet="Bassins" />
+      <End Role="Sensor" EntitySet="Sensors" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Silo_Bassin" Association="Self.FK_Silo_Bassin">
+      <End Role="Bassin" EntitySet="Bassins" />
+      <End Role="Silo" EntitySet="Silos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Trigger_Bassin" Association="Self.FK_Trigger_Bassin">
+      <End Role="Bassin" EntitySet="Bassins" />
+      <End Role="Trigger" EntitySet="Triggers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SensorData_Sensor" Association="Self.FK_SensorData_Sensor">
+      <End Role="Sensor" EntitySet="Sensors" />
+      <End Role="SensorData" EntitySet="SensorDatas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Trigger_Warning" Association="Self.FK_Trigger_Warning">
+      <End Role="Warning" EntitySet="Warnings" />
+      <End Role="Trigger" EntitySet="Triggers" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -45,11 +45,11 @@ namespace EelData.Test
             DALManagerSingleton.Instance.SaveTrigger(_trigger);
         }
 
-        [TestMethod]
-        public void SaveTempsTest()
-        {
-            DALManagerSingleton.Instance.SaveSensorData(_sensorData);
-        }
+        //[TestMethod]
+        //public void SaveTempsTest()
+        //{
+        //    DALManagerSingleton.Instance.SaveSensorData(_sensorData);
+        //}
 
         [TestMethod]
         public void SaveSensorTest()
