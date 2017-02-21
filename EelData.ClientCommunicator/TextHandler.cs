@@ -8,8 +8,6 @@ namespace EelData.ClientCommunicator
 {
     public class TextHandler
     {
-        private Model.SensorData _sensorData = new Model.SensorData();
-
         public void GetRequest(string text, Socket current, Model.SensorData record)
         {
             // is the text contains these characters, the sensor on the device not attached, ignore it.
@@ -25,6 +23,8 @@ namespace EelData.ClientCommunicator
                 record.SensorID = idToInt;
             }
             LoggerSingleton.Instance.Log("Text received: " + text);
+            DALManagerSingleton.Instance.SaveSensorData(record);
+
             #region deprecated
             // client sends feed command
             //if (text.ToLower().Contains("feed"))

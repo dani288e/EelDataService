@@ -29,7 +29,7 @@ namespace EelData.Test
             // send a text string similar to that an arduino might send using ID 1
             TextHandlerSingleton.Instance.GetRequest("1$20.0000000000$", _clientSocket, _sensorData);
 
-            DALManagerSingleton.Instance.SaveSensorData(_sensorData);
+            //DALManagerSingleton.Instance.SaveSensorData(_sensorData); // din GetRequest metode, gemmer i dal'en :* så denne del behøver du ikke <3 
         }
 
         [TestMethod]

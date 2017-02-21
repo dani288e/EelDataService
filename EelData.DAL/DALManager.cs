@@ -136,6 +136,25 @@ namespace EelData.DAL
                         LoggerSingleton.Instance.Log("An exception occurred when attempting to save sensordata to the database: ", ex);
                     }
                 }
+                else
+                {
+                    // test code - remember to remove this
+                    SensorData sensorDataE = new SensorData();
+                    sensorDataE.SensorID = record.SensorID;
+                    sensorDataE.AmbientTemperature = record.AmbientTemperature;
+                    sensorDataE.WaterLevel = record.WaterLevel;
+                    sensorDataE.WindSpeed = record.WindSpeed;
+                    sensorDataE.WaterTemperature = record.WaterTemperature;
+                    context.SensorDatas.Add(sensorDataE);
+                    try
+                    {
+                        context.SaveChanges();
+                    }
+                    catch (Exception ex)
+                    {
+                        LoggerSingleton.Instance.Log("An exception occurred when attempting to save sensordata to the database: ", ex);
+                    }
+                }
             }
         }
 

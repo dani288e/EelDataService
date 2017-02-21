@@ -11,7 +11,7 @@ namespace EelData
     public partial class MainService : ServiceBase
     {
         private Timer _dataLoggerTimer = null;
-        private Model.SensorData _sensorData;
+        //private Model.SensorData _sensorData;
 
         public MainService()
         {
@@ -20,7 +20,7 @@ namespace EelData
 
         protected override void OnStart(string[] args)
         {
-            _sensorData = new Model.SensorData();
+            //_sensorData = new Model.SensorData(); 
             // create and attach the logger so we can monitor the service activity
             ILogObserver logger = new FlatFileObserver();
             LoggerSingleton.Instance.Attach(logger);
@@ -35,6 +35,7 @@ namespace EelData
             _dataLoggerTimer.Enabled = true;
 
             LoggerSingleton.Instance.Log("Service started");
+
         }
 
         protected override void OnStop()
@@ -46,7 +47,7 @@ namespace EelData
 
         private void DataLoggerTimer_Elapsed(object sender, ElapsedEventArgs e)
         {
-            DALManagerSingleton.Instance.SaveSensorData(_sensorData);
+            //DALManagerSingleton.Instance.SaveSensorData(_sensorData);
         }
     }
 }

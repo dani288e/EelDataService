@@ -45,7 +45,6 @@
     <Compile Include="SocketServer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SocketServerSingleton.cs" />
-    <Compile Include="StateObject.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EelData.ClientCommunicator\EelData.ClientCommunicator.csproj">
