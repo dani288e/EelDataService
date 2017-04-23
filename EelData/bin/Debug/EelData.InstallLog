@@ -27,3 +27,11 @@ Affected parameters are:
    logtoconsole = 
    logfile = C:\Users\danie\OneDrive\dev\c#\EelData\EelData\bin\Debug\EelData.InstallLog
    assemblypath = C:\Users\danie\OneDrive\dev\c#\EelData\EelData\bin\Debug\EelData.exe
+Uninstalling assembly 'C:\Users\danie\OneDrive\dev\c#\EelData\EelData\bin\Debug\EelData.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\danie\OneDrive\dev\c#\EelData\EelData\bin\Debug\EelData.InstallLog
+   assemblypath = C:\Users\danie\OneDrive\dev\c#\EelData\EelData\bin\Debug\EelData.exe
+Removing EventLog source EelData Service.
+Service EelData Service is being removed from the system...
+Service EelData Service was successfully removed from the system.

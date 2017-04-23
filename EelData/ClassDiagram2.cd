@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="EelData.MainService">
+    <Position X="2" Y="1.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAEACAAAACAAAAAAAAAEAAAAAAAAA=</HashCode>
+      <FileName>MainService.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EelData.Program">
+    <Position X="8" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EelData.ProjectInstaller">
+    <Position X="4.5" Y="1.25" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAACAAAAAAAACAAAACAAAAAAAAAAAAAAAAIAA=</HashCode>
+      <FileName>ProjectInstaller.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EelData.DAL.DALManager">
+    <Position X="12.25" Y="2.5" Width="4.25" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="EelData.DAL.DALManagerSingleton">
+    <Position X="13.25" Y="0.75" Width="2.25" />
+    <TypeIdentifier />
+    <ShowAsAssociation>
+      <Property Name="Instance" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="EelData.DAL.Ringsted1Entities111" Collapsed="true">
+    <Position X="18.25" Y="1" Width="1.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="EelData.DAL.Bassin" Collapsed="true">
+    <Position X="19.75" Y="1" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="EelData.DAL.Hall">
+    <Position X="20" Y="1.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="EelData.DAL.Sensor" Collapsed="true">
+    <Position X="20" Y="0.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="EelData.DAL.SensorData">
+    <Position X="20" Y="3.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="EelData.DAL.Silo">
+    <Position X="18.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="EelData.DAL.sysdiagram" Collapsed="true">
+    <Position X="17.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="EelData.DAL.Trigger" Collapsed="true">
+    <Position X="18.75" Y="0.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="EelData.DAL.Warning">
+    <Position X="18.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="EelData.Logger.FlatFileObserver" BaseTypeListCollapsed="true">
+    <Position X="14.5" Y="12.25" Width="3" />
+    <TypeIdentifier />
+    <Lollipop Position="0.183" Collapsed="true" />
+  </Class>
+  <Class Name="EelData.Logger.Logger">
+    <Position X="17.75" Y="12.25" Width="3" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="EelData.Logger.LoggerSingleton">
+    <Position X="18.25" Y="10.5" Width="1.75" />
+    <TypeIdentifier />
+    <ShowAsAssociation>
+      <Property Name="Instance" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="EelData.Model.Bassin">
+    <Position X="1" Y="4.75" Width="1.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="EelData.Model.Hall">
+    <Position X="4.5" Y="7" Width="2.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="EelData.Model.Sensor">
+    <Position X="5.5" Y="4.75" Width="2" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="EelData.Model.SensorData">
+    <Position X="7.5" Y="7" Width="2.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="EelData.Model.Silo">
+    <Position X="3" Y="4.75" Width="2.25" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="EelData.Model.Trigger">
+    <Position X="7.75" Y="4.75" Width="2.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="EelData.Model.Warning">
+    <Position X="2" Y="7" Width="2.25" />
+    <TypeIdentifier />
+  </Class>
+  <Interface Name="EelData.Logger.ILogObserver">
+    <Position X="14.5" Y="10.5" Width="3" />
+    <TypeIdentifier />
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

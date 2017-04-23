@@ -5,6 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Net;
 using System.Net.Sockets;
 using EelData.DAL;
+using System;
 
 namespace EelData.Test
 {
@@ -28,8 +29,6 @@ namespace EelData.Test
 
             // send a text string similar to that an arduino might send using ID 1
             TextHandlerSingleton.Instance.GetRequest("1$20.0000000000$", _clientSocket, _sensorData);
-
-            //DALManagerSingleton.Instance.SaveSensorData(_sensorData); // din GetRequest metode, gemmer i dal'en :* så denne del behøver du ikke <3 
         }
 
         [TestMethod]
@@ -37,8 +36,9 @@ namespace EelData.Test
         {
             Socket _clientSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             _clientSocket.Connect(IPAddress.Loopback, 1337);
+            string ip = IPAddress.Loopback.ToString();
 
-            TextHandlerSingleton.Instance.GetRequest("feed", _clientSocket, _sensorData);
+            CommunicationAgentSingleton.Instance.SendFeed(ip, _clientSocket);
         }
     }
 }

@@ -42,7 +42,7 @@ namespace EelData.Test
         [TestMethod]
         public void SaveTriggerTest()
         {
-            DALManagerSingleton.Instance.SaveTrigger(_trigger);
+            DALManagerSingleton.Instance.SaveTrigger(_trigger, 1, 2);
         }
 
         //[TestMethod]

@@ -6,7 +6,6 @@ using System.Text;
 using EelData.Logger;
 using EelData.ClientCommunicator;
 using System.Configuration;
-using System.Diagnostics;
 using EelData.Model;
 
 namespace EelData.Networking
@@ -18,7 +17,8 @@ namespace EelData.Networking
         private List<Socket> _clientSockets = new List<Socket>();
         private readonly byte[] _buffer = new byte[_bufferSize];
         private const int _bufferSize = 2048;
-        private readonly int _port = Int32.Parse(ConfigurationManager.AppSettings["Port"]);
+        private readonly int _port = int.Parse(ConfigurationManager.AppSettings["Port"]);
+        private readonly IPAddress _ip = IPAddress.Parse(ConfigurationManager.AppSettings["IP"]);
         private SensorData _sensorData;
         #endregion
 
@@ -29,10 +29,10 @@ namespace EelData.Networking
             try
             {
                 _sensorData = new SensorData();
-                _serverSocket.Bind(new IPEndPoint(IPAddress.Any, _port));
+                _serverSocket.Bind(new IPEndPoint(_ip, _port));
                 // place the socket in a listen state. Max queue of 5 connections at a time
                 _serverSocket.Listen(5);
-                _serverSocket.BeginAccept(AcceptCallback, null /* replace null with object state */);
+                _serverSocket.BeginAccept(AcceptCallback, null);
                 LoggerSingleton.Instance.Log("Socket server started");
             }
             catch (Exception ex)
@@ -98,21 +98,20 @@ namespace EelData.Networking
         }
 
         /// <summary>
-        /// Unfinished - TODO - finish this
-        /// Desktop application wants to connect to the service
+        /// Desktop application sends request to the service
         /// </summary>
         /// <param name="AR"></param>
-        /// <param name="IP">IPAdress object, use this to send a command to a specific device</param>
-        public void ReceiveCallback(IAsyncResult AR, IPAddress IP, string command)
+        /// <param name="ip">IPAdress object, use this to send a command to a specific device</param>
+        public void ReceiveCallback(IAsyncResult AR, string ip, string command)
         {
             Socket current = (Socket)AR.AsyncState;
             try
             {
-                // try searching for the IP intered by the user
-                Socket clientSocket = _clientSockets.Find(x => x.RemoteEndPoint.ToString() == IP.ToString());
+                // try searching for the IP entered by the user
+                Socket clientSocket = _clientSockets.Find(x => x.RemoteEndPoint.ToString() == ip.ToString());
                 if (command != null)
                 {
-                    TextHandlerSingleton.Instance.GetRequest(command, current, _sensorData);
+                    CommunicationAgentSingleton.Instance.SendFeed(ip, current);
                 }
             }
             catch (Exception ex)
@@ -152,7 +151,7 @@ namespace EelData.Networking
             TextHandlerSingleton.Instance.GetRequest(text, current, _sensorData);
 
             // send ack to connected device
-            TextHandlerSingleton.Instance.SendAck(current);
+            CommunicationAgentSingleton.Instance.SendAck(current);
 
             current.BeginReceive(_buffer, 0, _bufferSize, SocketFlags.None, ReceiveCallback, current);
         }

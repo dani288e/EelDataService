@@ -9,7 +9,6 @@ C:\Users\danie\OneDrive\dev\c#\EelData\EelData\bin\Debug\EntityFramework.dll
 C:\Users\danie\OneDrive\dev\c#\EelData\EelData\bin\Debug\EntityFramework.SqlServer.dll
 C:\Users\danie\OneDrive\dev\c#\EelData\EelData\bin\Debug\EelData.ClientCommunicator.dll
 C:\Users\danie\OneDrive\dev\c#\EelData\EelData\bin\Debug\EelData.DAL.pdb
-C:\Users\danie\OneDrive\dev\c#\EelData\EelData\bin\Debug\EelData.DAL.dll.config
 C:\Users\danie\OneDrive\dev\c#\EelData\EelData\bin\Debug\EelData.Logger.pdb
 C:\Users\danie\OneDrive\dev\c#\EelData\EelData\bin\Debug\EelData.Model.pdb
 C:\Users\danie\OneDrive\dev\c#\EelData\EelData\bin\Debug\EelData.Networking.pdb
@@ -21,3 +20,4 @@ C:\Users\danie\OneDrive\dev\c#\EelData\EelData\obj\Debug\EelData.ProjectInstalle
 C:\Users\danie\OneDrive\dev\c#\EelData\EelData\obj\Debug\EelData.csproj.GenerateResource.Cache
 C:\Users\danie\OneDrive\dev\c#\EelData\EelData\obj\Debug\EelData.exe
 C:\Users\danie\OneDrive\dev\c#\EelData\EelData\obj\Debug\EelData.pdb
+C:\Users\danie\OneDrive\dev\c#\EelData\EelData\bin\Debug\EelData.DAL.dll.config

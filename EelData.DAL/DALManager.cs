@@ -158,12 +158,12 @@ namespace EelData.DAL
             }
         }
 
-        public void SaveTrigger(Model.Trigger record)
+        public void SaveTrigger(Model.Trigger record, byte bassinid, byte warningid)
         {
             using (Ringsted1Entities111 context = new Ringsted1Entities111())
             {
                 Trigger query = (from o in context.Triggers
-                                 where o.BassinID == record.BassinID
+                                 where o.BassinID == bassinid
                                  select o).FirstOrDefault();
 
                 if (query != null)
@@ -171,8 +171,8 @@ namespace EelData.DAL
                     // fix this, this db insert exception
                     Trigger triggerE = new Trigger();
                     triggerE.DateTime = DateTime.Now;
-                    triggerE.BassinID = record.BassinID;
-                    triggerE.WarningID = record.WarningID;
+                    triggerE.BassinID = bassinid;
+                    triggerE.WarningID = warningid;
                     context.Triggers.Add(triggerE);
                     try
                     {

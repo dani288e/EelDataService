@@ -5,10 +5,10 @@ C:\Users\danie\OneDrive\dev\c#\EelData\EelData.ClientCommunicator\bin\Debug\EelD
 C:\Users\danie\OneDrive\dev\c#\EelData\EelData.ClientCommunicator\bin\Debug\EelData.Model.dll
 C:\Users\danie\OneDrive\dev\c#\EelData\EelData.ClientCommunicator\bin\Debug\EntityFramework.dll
 C:\Users\danie\OneDrive\dev\c#\EelData\EelData.ClientCommunicator\bin\Debug\EelData.DAL.pdb
-C:\Users\danie\OneDrive\dev\c#\EelData\EelData.ClientCommunicator\bin\Debug\EelData.DAL.dll.config
 C:\Users\danie\OneDrive\dev\c#\EelData\EelData.ClientCommunicator\bin\Debug\EelData.Logger.pdb
 C:\Users\danie\OneDrive\dev\c#\EelData\EelData.ClientCommunicator\bin\Debug\EelData.Model.pdb
 C:\Users\danie\OneDrive\dev\c#\EelData\EelData.ClientCommunicator\bin\Debug\EntityFramework.xml
 C:\Users\danie\OneDrive\dev\c#\EelData\EelData.ClientCommunicator\obj\Debug\EelData.ClientCommunicator.csprojResolveAssemblyReference.cache
 C:\Users\danie\OneDrive\dev\c#\EelData\EelData.ClientCommunicator\obj\Debug\EelData.ClientCommunicator.dll
 C:\Users\danie\OneDrive\dev\c#\EelData\EelData.ClientCommunicator\obj\Debug\EelData.ClientCommunicator.pdb
+C:\Users\danie\OneDrive\dev\c#\EelData\EelData.ClientCommunicator\bin\Debug\EelData.DAL.dll.config
